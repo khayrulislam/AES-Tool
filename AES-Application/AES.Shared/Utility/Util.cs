@@ -21,18 +21,6 @@ namespace AES.Shared.Utility
             return rowShiftResult; ;
         }
 
-        public static int GetColumnNumber(int value)
-        {
-            int row = GetRowNumber(value);
-            int tempLeft = row << 4;
-            return value ^ tempLeft;
-        }
-
-        public static int GetRowNumber(int value)
-        {
-            return value >> 4;
-        }
-
         public static byte[] WordXOR(byte[] word1, byte[] word2)
         {
             byte[] result = new byte[word1.Length];

@@ -46,11 +46,11 @@ namespace AES.Shared.KeyExpand
         }
 
         // initialize the key in four row as word
-        public void InitializeKey(byte [][]initialKey)
+        public void InitializeKey(byte []initialKey)
         {
             for(int i=0;i<initialKey.Length;i++)
             {
-                KeyWords[i] = initialKey[i];
+                KeyWords[i/4][i%4] = initialKey[i];
             }
             ExpandKey();
         }
@@ -89,9 +89,9 @@ namespace AES.Shared.KeyExpand
             // substitute byte
             for(int i = 0; i < result.Length; i++)
             {
-                int row = Util.GetRowNumber(result[i]);
-                int col = Util.GetColumnNumber(result[i]);
-                result[i] = sBoxInstance.GetSBoxByte(row,col);
+/*                int row = Util.GetRowNumber(result[i]);
+                int col = Util.GetColumnNumber(result[i]);*/
+                result[i] = sBoxInstance.GetSBoxByte(result[i]);
             }
 
             // xor with constant

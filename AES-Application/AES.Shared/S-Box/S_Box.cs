@@ -1,5 +1,6 @@
 ﻿using AES.Shared.FileReader;
 using AES.Shared.utility;
+using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,11 +41,24 @@ namespace AES.Shared.S_Box
                 return sBoxInstance;
             }
         }
-        public byte GetSBoxByte(int row, int col)
+        public byte GetSBoxByte(byte value)
         {
+            int row = GetRowNumber(value);
+            int col = GetColumnNumber(value);
+
             return box[row][col];
         }
+        private int GetColumnNumber(int value)
+        {
+            int row = GetRowNumber(value);
+            int tempLeft = row << 4;
+            return value ^ tempLeft;
+        }
 
+        private int GetRowNumber(int value)
+        {
+            return value >> 4;
+        }
         private void InitializeSBox()
         {
             byteMap.Add('0', 0x0);

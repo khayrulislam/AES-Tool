@@ -31,7 +31,7 @@ namespace AES.Shared.FileReader
             }
             return allLine;
         }
-
+/*
         public void ReadMatrixConstant()
         {
             string filePath = "../../../AES.shared/MixColumn/Matrixconstant.txt";
@@ -53,6 +53,6 @@ namespace AES.Shared.FileReader
             {
                 Console.WriteLine("S-Box File not found!!!!");
             }
-        }
+        }*/
     }
 }
