@@ -38,7 +38,23 @@ namespace AES.Shared.mixColumn
             }
         }
 
+/*        public byte[][] CalculateMixColumn(byte[][] input)
+        {
+            byte[][] result = new byte[4][];
 
+            for(int i = 0; i < 4; i++)
+            {
+                for(int j = 0; j < 4; j++)
+                {
+                    byte[] col = new byte[4];
+                    for(int k = 0; k < 4; k++)
+                    {
+                        col[k][]
+                    }
+                    result[i][j] =  
+                }
+            }
+        }*/
 
     }
 }
