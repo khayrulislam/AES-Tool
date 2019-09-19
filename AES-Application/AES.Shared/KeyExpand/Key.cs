@@ -21,7 +21,6 @@ namespace AES.Shared.KeyExpand
         {
             KeyWords = new byte[NumberOfKeyWords][];
             InitializeKeyConstant();
-            
             sBoxInstance = SBox.GetSBoxInstance;
         }
 
@@ -31,7 +30,7 @@ namespace AES.Shared.KeyExpand
             this.KeyConstant[0] = 0x1;
             this.KeyConstant[1] = 0x0;
             this.KeyConstant[2] = 0x0;
-            this.KeyConstant[3] = 0x0;
+            KeyConstant[3] = 0x0;
         }
 
         public static Key GetKeyInstance
@@ -54,6 +53,16 @@ namespace AES.Shared.KeyExpand
                 KeyWords[i] = initialKey[i];
             }
             ExpandKey();
+        }
+
+        public byte[][] GetRoundKey(int roundNumber)
+        {
+            byte[][] key = new byte[4][];
+            for(int i = 0; i < 4; i++)
+            {
+                key[i] = KeyWords[4*roundNumber + i ];
+            }
+            return key;
         }
 
         private void ExpandKey()
