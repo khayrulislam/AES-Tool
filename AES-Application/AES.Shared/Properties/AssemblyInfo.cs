@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AES.Test")]
+[assembly: AssemblyTitle("AES.Shared")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AES.Test")]
+[assembly: AssemblyProduct("AES.Shared")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d1451474-c661-4372-88a9-6f6d07e0a295")]
+[assembly: Guid("9103fb3e-39c3-4907-b1f3-86cdde0f1f79")]
 
 // Version information for an assembly consists of the following four values:
 //
