@@ -11,27 +11,25 @@ namespace AES.Shared.FileReader
 {
     public class DataReader
     {
-        public void ReadSBoxData()
+        public List<string[]> GetLinesOfWordsFromFile(string filePath)
         {
-            string filePath = "../../../AES.shared/S-Box/s-box.txt";
+            List<string[]> allLine = new List<string[]>();
+
             if (File.Exists(filePath))
             {
                 string[] lines = File.ReadAllLines(filePath);
-                List<string[]> allLine = new List<string[]>();
 
                 foreach (string line in lines)
                 {
                     string[] words = line.Split('\t');
                     allLine.Add(words);
                 }
-
-                SBox sBoxInstance = SBox.GetSBoxInstance;
-                sBoxInstance.StoreSBox(allLine);
             }
             else
             {
-                Console.WriteLine("S-Box File not found!!!!");
+                Console.WriteLine("File not found!!!!");
             }
+            return allLine;
         }
 
         public void ReadMatrixConstant()

@@ -11,5 +11,8 @@ namespace AES.Shared.utility
         public static int BLOCK_ROW_SIZE = 4;
         public static int BLOCK_COLUMN_SIZE = 4;
         public static int MIX_COLUMN_CONSTANT = 27;
+        public static string S_BOX_FILE_PATH = "../../../AES.shared/S-Box/s-box.txt";
+        public static string MIX_COLUMN_MATRIX_FILE_PATH = "../../../AES.shared/MixColumn/Matrixconstant.txt";
+
     }
 }
