@@ -12,14 +12,12 @@ namespace AES.ConsoleTest
         public static void Main(string[] args)
         {
 
-            //byte x = Convert.ToByte("a2", 8);
-            byte x = 0xa;
-            byte y = 0x1;
-            int z = x << 4;
-            DataReader re = new DataReader();
-            re.ReadSBoxData();
-            Console.WriteLine(z^y);
-            Console.ReadLine();
+            int x = 255;
+
+            if (x >> 7 == 1)
+            {
+                Console.WriteLine("ok"+x);
+            }
         }
     }
 }

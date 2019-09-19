@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AES.Shared.utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace AES.Shared.mixColumn
         private int[][] matrix;
         private MixColumn()
         {
+
         }
 
         public void StoreMatrix(List<string[]> lines)
@@ -38,23 +40,59 @@ namespace AES.Shared.mixColumn
             }
         }
 
-/*        public byte[][] CalculateMixColumn(byte[][] input)
+        public byte[][] CalculateMixColumn(byte[][] input)
         {
             byte[][] result = new byte[4][];
 
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
             {
-                for(int j = 0; j < 4; j++)
+                for (int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
                 {
-                    byte[] col = new byte[4];
-                    for(int k = 0; k < 4; k++)
+                    // row number
+                    byte[] col = new byte[Constants.BLOCK_COLUMN_SIZE];
+                    for (int k = 0; k < Constants.BLOCK_COLUMN_SIZE; k++)
                     {
-                        col[k][]
+                        col[k] = input[k][j];
                     }
-                    result[i][j] =  
+                    result[i][j] = Multiplication(matrix[i], col);
                 }
             }
-        }*/
+            return result;
+        }
 
+        private byte Multiplication(int[] matrixRow, byte[] col)
+        {
+            int result = 0;
+            int value;
+            for(int i = 0; i < Constants.BLOCK_COLUMN_SIZE; i++)
+            {
+                value = col[i];
+                if (matrixRow[i] == 2)
+                {
+                    value = Multiply2(value);
+                }
+                else if(matrixRow[i] == 3)
+                {
+                    value = Multiply3(value);
+                }
+                result ^= value;
+            }
+            return Convert.ToByte(result); 
+        }
+
+        private int Multiply2(int value)
+        {
+            int constant = Constants.MIX_COLUMN_CONSTANT;
+            if (value >> 7 == 0)
+            {
+                constant = 0;
+            }
+            return value << 1 ^ constant;
+        }
+
+        private int Multiply3(int value)
+        {
+            return value ^ Multiply2(value);
+        }
     }
 }
