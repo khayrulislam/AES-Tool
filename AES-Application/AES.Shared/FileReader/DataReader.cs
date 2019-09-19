@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AES.Shared.S_Box;
 
 namespace AES.Shared.FileReader
 {
@@ -11,7 +12,7 @@ namespace AES.Shared.FileReader
     {
         public void ReadSBoxData()
         {
-            string filePath = "";
+            string filePath = "../../../AES.shared/S-Box/s-box.txt";
             if (File.Exists(filePath))
             {
                 string[] lines = File.ReadAllLines(filePath);
@@ -19,10 +20,12 @@ namespace AES.Shared.FileReader
 
                 foreach (string line in lines)
                 {
-                    string[] words = line.Split(',');
+                    string[] words = line.Split('\t');
                     allLine.Add(words);
                 }
-
+                Console.WriteLine(allLine[0]);
+                SBox sBoxInstance = SBox.GetSBoxInstance;
+                sBoxInstance.StoreSBox(allLine);
             }
             else
             {

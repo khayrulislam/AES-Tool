@@ -1,4 +1,5 @@
-﻿using AES.Shared.Utility;
+﻿using AES.Shared.S_Box;
+using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,29 @@ using System.Threading.Tasks;
 namespace AES.Shared.KeyExpand
 {
     
-    public class Key
+    public sealed class Key
     {
         private byte[][] KeyWords;
 
         private int NumberOfKeyWords = 44;
-        private byte KeyConstant = 0x40;
+        private byte[] KeyConstant;
         private static Key KeyInstance = null;
+        private SBox sBoxInstance = null;
         private Key()
         {
             KeyWords = new byte[NumberOfKeyWords][];
+            InitializeKeyConstant();
+            
+            sBoxInstance = SBox.GetSBoxInstance;
+        }
+
+        private void InitializeKeyConstant()
+        {
+            this.KeyConstant = new byte[4];
+            this.KeyConstant[0] = 0x1;
+            this.KeyConstant[1] = 0x0;
+            this.KeyConstant[2] = 0x0;
+            this.KeyConstant[3] = 0x0;
         }
 
         public static Key GetKeyInstance
@@ -32,6 +46,7 @@ namespace AES.Shared.KeyExpand
             }
         }
 
+        // initialize the key in four row as word
         public void InitializeKey(byte [][]initialKey)
         {
             for(int i=0;i<initialKey.Length;i++)
@@ -43,25 +58,37 @@ namespace AES.Shared.KeyExpand
 
         private void ExpandKey()
         {
-            byte[] PreviousWord = new byte[4];
+            byte[] previousWord = new byte[4];
 
             for(int i = 4; i < NumberOfKeyWords; i++)
             {
-                PreviousWord = KeyWords[i-1];
+                previousWord = KeyWords[i-1];
+
                 if(i%4 == 0)
                 {
-                    PreviousWord = GetGResult(PreviousWord);
+                    previousWord = GetGResult(previousWord);
                 }
-                //KeyWords[i] = 
+                KeyWords[i] = Util.WordXOR(previousWord, KeyWords[i-4]);
             }
         }
 
-        private byte[] GetGResult(byte[] previousWord)
+        private byte[] GetGResult(byte[] word)
         {
             // one byte left shift;
-            byte[] rowShift = Util.ShiftRow(previousWord,1);
+            byte[] result = Util.ShiftRow(word,1);
 
-            return null;
+            // substitute byte
+            for(int i = 0; i < result.Length; i++)
+            {
+                int row = Util.GetRowNumber(result[i]);
+                int col = Util.GetColumnNumber(result[i]);
+                result[i] = sBoxInstance.GetSBoxByte(row,col);
+            }
+
+            // xor with constant
+            result = Util.WordXOR(result, this.KeyConstant);
+
+            return result;
         }
     }
 }

@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AES.Shared\AES.Shared.csproj">
+      <Project>{9103FB3E-39C3-4907-B1F3-86CDDE0F1F79}</Project>
+      <Name>AES.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
