@@ -22,7 +22,6 @@ namespace AES.Shared.Utility
             {
                 rowShiftResult[i] = row[(i + shiftCount) % row.Length];
             }
-
             return rowShiftResult;
         }
 
