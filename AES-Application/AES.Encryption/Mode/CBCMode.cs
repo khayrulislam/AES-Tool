@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AES.Encryption
+namespace AES.Encryption.Mode
 {
-    public class Class1
+    public class CBCMode
     {
     }
 }
