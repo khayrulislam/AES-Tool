@@ -29,13 +29,13 @@ namespace AES.Shared.encryption
 
         }
 
-        public void Encrypt(byte[] textArray)
+        public byte[][] Encrypt(byte[] textArray)
         {
             plainText = new byte[Constants.BLOCK_COLUMN_SIZE][];
             plainText = Util.Convert1Dto2DArray(textArray);
             
             // initial add round key execute using 0 round key
-            StartEncryptionRound(AddRoundKey(plainText, keyInstance.GetRoundKey(0)));
+            return StartEncryptionRound(AddRoundKey(plainText, keyInstance.GetRoundKey(0)));
         }
 
         private byte[][] StartEncryptionRound(byte[][] result)
@@ -44,21 +44,13 @@ namespace AES.Shared.encryption
             {
                 result = SubstituteByte(result);
                 result = ShiftRow(result);
-                if(i != 10 )result = mixColumnInstance.CalculateMixColumn(result);
+                if (i != 10) result = MixColumn(result);
                 result = AddRoundKey(result, keyInstance.GetRoundKey(i));
             }
             return result;
         }
 
-        private byte[][] ShiftRow(byte[][] result)
-        {
-            for(int i = 1; i < Constants.BLOCK_ROW_SIZE; i++)
-            {
-                result[i] = Util.ShiftRow(result[i], i);
-            }
-            return result;
-        }
-
+        // substitute byte using sbox
         private byte[][] SubstituteByte(byte[][] result)
         {
 
@@ -72,15 +64,33 @@ namespace AES.Shared.encryption
             return result;
         }
 
+        // shift row circular base on the row number
+        private byte[][] ShiftRow(byte[][] result)
+        {
+            for (int i = 1; i < Constants.BLOCK_ROW_SIZE; i++)
+            {
+                result[i] = Util.ShiftRow(result[i], i);
+            }
+            return result;
+        }
+
+        // multiply with a fix matrix
+        private byte[][] MixColumn(byte[][] result)
+        {
+            return mixColumnInstance.CalculateMixColumn(result);
+        }
+
+        // Add round key general xor operation on text byte and key
         private byte[][] AddRoundKey(byte[][] plainText, byte[][] key)
         {
             byte[][] result = new byte[Constants.BLOCK_ROW_SIZE][];
 
-            for(int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            for (int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
             {
-                result[i] = Util.WordXOR(plainText[i],key[i]);
+                result[i] = Util.WordXOR(plainText[i], key[i]);
             }
             return result;
         }
+
     }
 }
