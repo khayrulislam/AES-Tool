@@ -21,12 +21,14 @@ namespace AES.Shared.encryption
 
         private Key keyInstance;
 
-        public Encryption()
+        // to create encryption instance, key array must be inserted  
+        public Encryption(byte[] key)
         {
+            keyInstance = Key.GetKeyInstance;
+            keyInstance.InitializeKey(key);
+
             sBoxInstance = SBox.GetSBoxInstance;
             mixColumnInstance = MixColumn.GetMixColumnInstance;
-            keyInstance = Key.GetKeyInstance;
-
         }
 
         public byte[][] Encrypt(byte[] textArray)
