@@ -16,7 +16,6 @@ namespace AES.Shared.S_Box
 
         private int sBoxSize = 16;
 
-
         public static SBox sBoxInstance = null;
 
         private SBox()
@@ -72,12 +71,5 @@ namespace AES.Shared.S_Box
             }
         }
 
-        /*private byte GetByte(string value)
-        {
-            int first = byteMap[value[0]] << 4;
-            int second = byteMap[value[1]];
-            int result = first ^ second;
-            return Convert.ToByte(result);
-        }*/
     }
 }

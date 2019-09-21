@@ -61,9 +61,9 @@ namespace AES.Shared.KeyExpand
         public void InitializeKey(byte []initialKey)
         {
             byte [][] initialKeyWords = Util.Convert1Dto2DArray(initialKey);
-            for(int i = 0; i < initialKeyWords.Length; i++)
+
+            for (int i = 0; i < initialKeyWords.Length; i++)
             {
-                //for(int j=0;j < initialKey[i])
                 KeyWords[i] = initialKeyWords[i];
             }
             ExpandKey();
@@ -71,12 +71,12 @@ namespace AES.Shared.KeyExpand
 
         public byte[][] GetRoundKey(int roundNumber)
         {
-            byte[][] key = new byte[Constants.BLOCK_ROW_SIZE][];
-            for(int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            byte[][] key = Util.Initialize2DArray();
+            for(int i = 0; i < Constants.BLOCK_COLUMN_SIZE; i++)
             {
-                key[i] = KeyWords[Constants.BLOCK_ROW_SIZE * roundNumber + i ];
+                key[i] = KeyWords[Constants.BLOCK_COLUMN_SIZE * roundNumber + i];
             }
-            return key;
+            return Util.MatrixTranspose(key);
         }
 
         private void ExpandKey()
@@ -88,7 +88,7 @@ namespace AES.Shared.KeyExpand
 
                 if(i%4 == 0)
                 {
-                    previousWord = GetGResult(previousWord,i/4);
+                    previousWord = GetGResult(previousWord,i/4-1);
                 }
                 KeyWords[i] = Util.WordXOR(previousWord, KeyWords[i-4]);
             }

@@ -15,21 +15,26 @@ namespace AES.ConsoleTest
         public static void Main(string[] args)
         {
 
-            string inputText = "qwertyuiopasdfgh";
+/*            string inputText = "Two One Nine Two";
             string key = "Thats my Kung Fu";
-            
+*/
+            string inputText = "qwertyuiopasdfgh";
+            string key = "1122334455667788";
+
 
             byte[] inputBytes = Encoding.ASCII.GetBytes(inputText);
             byte[] inputKeys = Encoding.ASCII.GetBytes(key);
 
             Encryption enc = new Encryption(inputKeys);
-            //Util.PrintHex(enc.Encrypt(inputBytes));
+            Util.PrintHex(enc.Encrypt(inputBytes));
+            Console.Read();
 
-            Key kk = Key.GetKeyInstance;
-            for(int i = 0; i <= 10; i++)
-            {
-                Util.PrintHex(kk.GetRoundKey(i));
-            }
+            /*            Encryption enc = new Encryption(inputKeys);
+                        Key kk = Key.GetKeyInstance;
+                        for (int i = 0; i <= 10; i++)
+                        {
+                            Util.PrintHex(kk.GetRoundKey(i));
+                        }*/
             Console.Read();
 
 

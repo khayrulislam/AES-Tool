@@ -34,8 +34,8 @@ namespace AES.Shared.encryption
         public byte[][] Encrypt(byte[] textArray)
         {
             //plainText = new byte[Constants.BLOCK_COLUMN_SIZE][];
-            plainText = Util.Convert1Dto2DArray(textArray);
-            
+            plainText = Util.MatrixTranspose(Util.Convert1Dto2DArray(textArray)) ;
+
             // initial add round key execute using 0 round key
             return StartEncryptionRound(AddRoundKey(plainText, keyInstance.GetRoundKey(0)));
         }
@@ -49,7 +49,7 @@ namespace AES.Shared.encryption
                 if (i != 10) result = MixColumnOperation(result);
                 result = AddRoundKey(result, keyInstance.GetRoundKey(i));
             }
-            return result;
+            return Util.MatrixTranspose(result);
         }
 
         // substitute byte using sbox

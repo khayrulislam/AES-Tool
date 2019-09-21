@@ -95,5 +95,19 @@ namespace AES.Shared.Utility
             return Convert.ToByte(result);
         }
 
+        public static byte[][] MatrixTranspose(byte[][] input)
+        {
+            byte[][] result = Initialize2DArray();
+            
+            for(int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            {
+                for(int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
+                {
+                    result[i][j] = input[j][i];
+                }
+            }
+            return result;
+        }
+
     }
 }
