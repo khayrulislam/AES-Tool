@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AES.Encryption.Mode
 {
-    public class ECBMode : EncryptionStep,IEncryptionMode
+    public class ECBMode : EncryptionRoundStep,IEncryptionMode
     {
         private Key keyInstance;
         Parameter param;

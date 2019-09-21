@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace AES.Encryption.steps
 {
-    public class EncryptionStep
+    public class EncryptionRoundStep
     {
         private SBox sBoxInstance;
 
         private MixColumn mixColumnInstance;
 
         // create sbox and mixcolumn instance for next use
-        public EncryptionStep()
+        public EncryptionRoundStep()
         {
             sBoxInstance = SBox.GetSBoxInstance;
             mixColumnInstance = MixColumn.GetMixColumnInstance;
