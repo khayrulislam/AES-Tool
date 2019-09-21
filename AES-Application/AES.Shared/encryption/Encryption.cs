@@ -32,12 +32,9 @@ namespace AES.Shared.encryption
         public void Encrypt(byte[] textArray)
         {
             plainText = new byte[Constants.BLOCK_COLUMN_SIZE][];
-
-            for(int i = 0; i < textArray.Length; i++)
-            {
-                plainText[i/ Constants.BLOCK_ROW_SIZE][i% Constants.BLOCK_COLUMN_SIZE] = textArray[i];
-            }
-            ///
+            plainText = Util.Convert1Dto2DArray(textArray);
+            
+            // initial add round key execute using 0 round key
             StartEncryptionRound(AddRoundKey(plainText, keyInstance.GetRoundKey(0)));
         }
 

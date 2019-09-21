@@ -1,4 +1,5 @@
 ﻿using AES.Shared.S_Box;
+using AES.Shared.utility;
 using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace AES.Shared.KeyExpand
             this.KeyConstant[0] = 0x1;
             this.KeyConstant[1] = 0x0;
             this.KeyConstant[2] = 0x0;
-            KeyConstant[3] = 0x0;
+            this.KeyConstant[3] = 0x0;
         }
 
         public static Key GetKeyInstance
@@ -46,31 +47,28 @@ namespace AES.Shared.KeyExpand
         }
 
         // initialize the key in four row as word
+        // input key in one dimension array
         public void InitializeKey(byte []initialKey)
         {
-            for(int i=0;i<initialKey.Length;i++)
-            {
-                KeyWords[i/4][i%4] = initialKey[i];
-            }
+            KeyWords = Util.Convert1Dto2DArray(initialKey);
             ExpandKey();
         }
 
         public byte[][] GetRoundKey(int roundNumber)
         {
-            byte[][] key = new byte[4][];
-            for(int i = 0; i < 4; i++)
+            byte[][] key = new byte[Constants.BLOCK_ROW_SIZE][];
+            for(int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
             {
-                key[i] = KeyWords[4*roundNumber + i ];
+                key[i] = KeyWords[Constants.BLOCK_ROW_SIZE * roundNumber + i ];
             }
             return key;
         }
 
         private void ExpandKey()
         {
-            byte[] previousWord = new byte[4];
-
             for(int i = 4; i < NumberOfKeyWords; i++)
             {
+                byte[] previousWord = new byte[4];
                 previousWord = KeyWords[i-1];
 
                 if(i%4 == 0)
@@ -89,11 +87,8 @@ namespace AES.Shared.KeyExpand
             // substitute byte
             for(int i = 0; i < result.Length; i++)
             {
-/*                int row = Util.GetRowNumber(result[i]);
-                int col = Util.GetColumnNumber(result[i]);*/
                 result[i] = sBoxInstance.GetSBoxByte(result[i]);
             }
-
             // xor with constant
             result = Util.WordXOR(result, this.KeyConstant);
 

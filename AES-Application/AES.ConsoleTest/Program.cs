@@ -12,12 +12,7 @@ namespace AES.ConsoleTest
         public static void Main(string[] args)
         {
 
-            int x = 255;
-
-            if (x >> 7 == 1)
-            {
-                Console.WriteLine("ok"+x);
-            }
+            
         }
     }
 }

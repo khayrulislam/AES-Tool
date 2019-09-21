@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AES.Shared.utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,16 @@ namespace AES.Shared.Utility
                 result[i] = Convert.ToByte(word1Byte ^ word2Byte);
             }
             return result;
+        }
+
+        public static byte[][] Convert1Dto2DArray(byte[] array)
+        {
+            byte[][] array2d = new byte[Constants.BLOCK_ROW_SIZE][];
+            for (int i = 0; i < array.Length; i++)
+            {
+                array2d[i / Constants.BLOCK_ROW_SIZE][i % Constants.BLOCK_COLUMN_SIZE] = array[i];
+            }
+            return array2d;
         }
 
     }
