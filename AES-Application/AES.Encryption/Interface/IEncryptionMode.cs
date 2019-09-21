@@ -10,7 +10,7 @@ namespace AES.Encryption.Interface
     public interface IEncryptionMode 
     {
         void ExpandEncryptionKey(byte[] key);
-        void EncryptFile(string inputFilePath,string outputFilePath);
-        void EncryptText(string text);
+        void EncryptFile(string inputFilePath,string outputFilePath,string initialVector);
+        void EncryptText(string text, string initialVector);
     }
 }

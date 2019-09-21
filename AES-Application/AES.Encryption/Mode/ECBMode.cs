@@ -39,12 +39,12 @@ namespace AES.Encryption.Mode
             keyInstance.InitializeKey(key);
         }
 
-        public void EncryptFile(string inputFilePath, string outputFilePath)
+        public void EncryptFile(string inputFilePath, string outputFilePath, string initialVector)
         {
 
         }
 
-        public void EncryptText(string text)
+        public void EncryptText(string text, string initialVector)
         {
             byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(text)));
             Util.PrintHex(EncryptionRoundIteration(input));
