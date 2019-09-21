@@ -41,10 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IEncryptionMode.cs" />
-    <Compile Include="Mode\CBCMode.cs" />
-    <Compile Include="Mode\ECBMode.cs" />
+    <Compile Include="encrypt\Encrypt.cs" />
+    <Compile Include="encrypt\Parameter.cs" />
+    <Compile Include="interface\IEncryptionMode.cs" />
+    <Compile Include="mode\CBCMode.cs" />
+    <Compile Include="mode\ECBMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="steps\EncryptionStep.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AES.Shared\AES.Shared.csproj">
+      <Project>{9103FB3E-39C3-4907-B1F3-86CDDE0F1F79}</Project>
+      <Name>AES.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
