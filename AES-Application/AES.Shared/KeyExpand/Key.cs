@@ -1,4 +1,5 @@
-﻿using AES.Shared.S_Box;
+﻿using AES.Shared.FileReader;
+using AES.Shared.S_Box;
 using AES.Shared.utility;
 using AES.Shared.Utility;
 using System;
@@ -15,7 +16,7 @@ namespace AES.Shared.KeyExpand
         private byte[][] KeyWords;
 
         private int NumberOfKeyWords = 44;
-        private byte[] KeyConstant;
+        private byte[][] KeyConstant;
         private static Key KeyInstance = null;
         private SBox sBoxInstance = null;
         private Key()
@@ -27,11 +28,20 @@ namespace AES.Shared.KeyExpand
 
         private void InitializeKeyConstant()
         {
-            this.KeyConstant = new byte[4];
-            this.KeyConstant[0] = 0x1;
-            this.KeyConstant[1] = 0x0;
-            this.KeyConstant[2] = 0x0;
-            this.KeyConstant[3] = 0x0;
+            DataReader dReader = new DataReader();
+            List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.KEY_CONSTANT_FILE_PATH);
+
+            this.KeyConstant = new byte[lines.Count][];
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                this.KeyConstant[i] = new byte[lines[i].Length];
+                for (int j = 0; j < lines[i].Length; j++)
+                {
+                    this.KeyConstant[i][j] = Util.GetByte(lines[i][j]);
+                }
+            }
+
         }
 
         public static Key GetKeyInstance
@@ -78,13 +88,13 @@ namespace AES.Shared.KeyExpand
 
                 if(i%4 == 0)
                 {
-                    previousWord = GetGResult(previousWord);
+                    previousWord = GetGResult(previousWord,i/4);
                 }
                 KeyWords[i] = Util.WordXOR(previousWord, KeyWords[i-4]);
             }
         }
 
-        private byte[] GetGResult(byte[] word)
+        private byte[] GetGResult(byte[] word, int keyConstantNumber)
         {
             // one byte left shift;
             byte[] result = Util.ShiftRow(word,1);
@@ -95,7 +105,7 @@ namespace AES.Shared.KeyExpand
                 result[i] = sBoxInstance.GetSBoxByte(result[i]);
             }
             // xor with constant
-            result = Util.WordXOR(result, this.KeyConstant);
+            result = Util.WordXOR(result, this.KeyConstant[keyConstantNumber]);
 
             return result;
         }

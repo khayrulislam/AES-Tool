@@ -9,6 +9,26 @@ namespace AES.Shared.Utility
 {
     public static class Util
     {
+        private static Dictionary<char, byte> byteMap = new Dictionary<char, byte> {
+                 {'0', 0x0},
+                 {'1', 0x1},
+                 {'2', 0x2},
+                 {'3', 0x3},
+                 {'4', 0x4},
+                 {'5', 0x5},
+                 {'6', 0x6},
+                 {'7', 0x7},
+                 {'8', 0x8},
+                 {'9', 0x9},
+                 {'a', 0xA},
+                 {'b', 0xB},
+                 {'c', 0xC},
+                 {'d', 0xD},
+                 {'e', 0xE},
+                 {'f', 0xF},
+
+             };
+
         public static byte[] ShiftRow(byte[] row, int shiftCount)
         {
             byte[] rowShiftResult = new byte[row.Length];
@@ -65,6 +85,14 @@ namespace AES.Shared.Utility
                 }
             }
             Console.WriteLine();
+        }
+
+        public static byte GetByte(string value)
+        {
+            int first = byteMap[value[0]] << 4;
+            int second = byteMap[value[1]];
+            int result = first ^ second;
+            return Convert.ToByte(result);
         }
 
     }
