@@ -29,22 +29,6 @@ namespace AES.ConsoleTest
             Util.PrintHex(enc.Encrypt(inputBytes));
             Console.Read();
 
-            /*            Encryption enc = new Encryption(inputKeys);
-                        Key kk = Key.GetKeyInstance;
-                        for (int i = 0; i <= 10; i++)
-                        {
-                            Util.PrintHex(kk.GetRoundKey(i));
-                        }*/
-            Console.Read();
-
-
-            /*            int x = 172;
-                        byte z = 27;
-
-                        int y = Convert.ToInt32(27);
-
-                        Console.WriteLine(x^y);
-                        Console.ReadLine();*/
 
         }
     }
