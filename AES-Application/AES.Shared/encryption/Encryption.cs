@@ -44,7 +44,7 @@ namespace AES.Shared.encryption
             {
                 result = SubstituteByte(result);
                 result = ShiftRow(result);
-                if (i != 10) result = MixColumn(result);
+                if (i != 10) result = MixColumnOperation(result);
                 result = AddRoundKey(result, keyInstance.GetRoundKey(i));
             }
             return result;
@@ -75,7 +75,7 @@ namespace AES.Shared.encryption
         }
 
         // multiply with a fix matrix
-        private byte[][] MixColumn(byte[][] result)
+        private byte[][] MixColumnOperation(byte[][] result)
         {
             return mixColumnInstance.CalculateMixColumn(result);
         }
