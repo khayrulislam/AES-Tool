@@ -33,7 +33,7 @@ namespace AES.Shared.encryption
 
         public byte[][] Encrypt(byte[] textArray)
         {
-            plainText = new byte[Constants.BLOCK_COLUMN_SIZE][];
+            //plainText = new byte[Constants.BLOCK_COLUMN_SIZE][];
             plainText = Util.Convert1Dto2DArray(textArray);
             
             // initial add round key execute using 0 round key

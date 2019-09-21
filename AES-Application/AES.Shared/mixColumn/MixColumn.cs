@@ -1,5 +1,6 @@
 ﻿using AES.Shared.FileReader;
 using AES.Shared.utility;
+using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +25,10 @@ namespace AES.Shared.mixColumn
             List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.MIX_COLUMN_MATRIX_FILE_PATH);
 
             matrix = new int[4][];
+
             for (int i = 0; i < lines.Count; i++)
             {
+                matrix[i] = new int[lines[i].Length];
                 for (int j = 0; j < lines[i].Length; j++)
                 {
                     matrix[i][j] = Convert.ToInt32(lines[i][j]);
@@ -48,7 +51,7 @@ namespace AES.Shared.mixColumn
         // matrix multiplication with defined matrix
         public byte[][] CalculateMixColumn(byte[][] input)
         {
-            byte[][] result = new byte[4][];
+            byte[][] result = Util.Initialize2DArray();
             
             for (int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
             {
@@ -93,6 +96,10 @@ namespace AES.Shared.mixColumn
             if (value >> 7 == 0)
             {
                 constant = 0;
+            }
+            else
+            {
+                value ^= 1 << 7; 
             }
             return value << 1 ^ constant;
         }
