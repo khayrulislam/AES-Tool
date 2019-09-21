@@ -88,6 +88,8 @@ namespace AES.Shared.mixColumn
         private int Multiply2(int value)
         {
             int constant = Constants.MIX_COLUMN_CONSTANT;
+            // check 8th bit is 0 or not
+            // if not multiply with two and xor with constant
             if (value >> 7 == 0)
             {
                 constant = 0;
