@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AES.Decryption\AES.Decryption.csproj">
+      <Project>{0C9996F0-2C1F-4AFE-8EBF-248F6BA035E8}</Project>
+      <Name>AES.Decryption</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AES.Encryption\AES.Encryption.csproj">
       <Project>{86F9AD58-0A22-4434-BE96-844398490083}</Project>
       <Name>AES.Encryption</Name>

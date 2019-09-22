@@ -58,7 +58,6 @@ namespace AES.Encryption.Mode
                     
                     bytesRead = fileStram.Read(buffer, 0, bufferSize);
                 }
-
             }
         }
 

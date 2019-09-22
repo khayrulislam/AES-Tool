@@ -6,16 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AES.Encryption.encrypt
+namespace AES.Decryption.decrypt
 {
-    public class Encrypt
+    public class Decrypt
     {
-
         private IEncryptionMode encMode;
 
         private Parameter encryptionParameter;
 
-        public Encrypt(Parameter parameter)
+        public Decrypt(Parameter parameter)
         {
             this.encryptionParameter = parameter;
         }
@@ -29,8 +28,8 @@ namespace AES.Encryption.encrypt
         {
 
             encMode.InitializeEncryption(encryptionParameter);
-            //encMode.EncryptText();
-            encMode.EncryptFile();
+            encMode.EncryptText();
+            //encMode.EncryptFile();
         }
     }
 }
