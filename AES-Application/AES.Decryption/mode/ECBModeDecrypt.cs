@@ -28,9 +28,9 @@ namespace AES.Decryption.mode
                 int bytesRead = fileStram.Read(buffer, 0, bufferSize);
                 while (bytesRead > 0)
                 {
-                    byte[] cypher = DecryptBlock(buffer);
+                    //byte[] cypher = DecryptBlock(buffer);
                     Array.Clear(buffer, 0, 16);
-                    FileWrite(cypher);
+                    //FileWrite(cypher);
 
                     bytesRead = fileStram.Read(buffer, 0, bufferSize);
                 }
@@ -50,14 +50,14 @@ namespace AES.Decryption.mode
             fs.Close();
         }
 
-        private byte[] DecryptBlock(byte[] block)
+/*        private byte[] DecryptBlock(byte[] block)
         {
-            byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(block));
+            *//*byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(block));
             byte[][] result = DecryptRoundIteration(input);
-            return Util.Convert2dTo1DArray(result);
-        }
+            return Util.Convert2dTo1DArray(result);*//*
+        }*/
 
-        private byte[][] DecryptRoundIteration(byte[][] currentStage)
+/*        private byte[][] DecryptRoundIteration(byte[][] currentStage)
         {
             currentStage = AddRoundKey(currentStage, keyInstance.GetRoundKey(10));
             for (int i = 9; i >= 0; i--)
@@ -68,7 +68,7 @@ namespace AES.Decryption.mode
                 if (i != 0) currentStage = MixColumnOperation(currentStage);
             }
             return Util.MatrixTranspose(currentStage);
-        }
+        }*/
         public void EncryptText()
         {
 
