@@ -1,4 +1,5 @@
 ﻿using AES.Encryption.Interface;
+using AES.Shared.utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;

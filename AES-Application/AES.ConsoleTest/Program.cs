@@ -1,14 +1,14 @@
-﻿using AES.Encryption.encrypt;
+﻿using AES.Shared.utility;
 using AES.Encryption.Mode;
 using AES.Shared.FileReader;
 using AES.Shared.KeyExpand;
-using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AES.Encryption.encrypt;
 
 namespace AES.ConsoleTest
 {
@@ -27,9 +27,11 @@ namespace AES.ConsoleTest
             par.InitialVector = "ABCDEFGHIPQRSTUV";
             par.Type = "e";
             par.Mode = "ecb";
+            par.InputFilePath = Constants.INPUT_FILE_PATH;
+            par.OutputFilePath = Constants.OUTPUT_FILE_PATH;
 
             var enc = new Encrypt(par);
-            enc.SetEncryptionMode(new CBCMode());
+            enc.SetEncryptionMode(new ECBMode());
             enc.Execute();
             Console.Read();
 

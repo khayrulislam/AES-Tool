@@ -2,6 +2,7 @@
 using AES.Encryption.Interface;
 using AES.Encryption.steps;
 using AES.Shared.KeyExpand;
+using AES.Shared.utility;
 using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;

@@ -2,6 +2,7 @@
 using AES.Encryption.Interface;
 using AES.Encryption.steps;
 using AES.Shared.KeyExpand;
+using AES.Shared.utility;
 using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,23 @@ namespace AES.Encryption.Mode
 
         public void EncryptFile()
         {
+            int bufferSize=16;
+            FileStream fileStram = new FileStream(parameter.InputFilePath, FileMode.Open, FileAccess.Read);
+            using (fileStram)
+            {
+                byte[] buffer = new byte[bufferSize];
+                fileStram.Seek(0, SeekOrigin.Begin);
+                int bytesRead = fileStram.Read(buffer, 0, bufferSize);
+                while (bytesRead > 0)
+                {
+                    byte[] cypher = EncryptBlock(buffer);
+                    Array.Clear(buffer,0,16);
+                    FileWrite(cypher);
+                    
+                    bytesRead = fileStram.Read(buffer, 0, bufferSize);
+                }
 
+            }
         }
 
         private void FileWrite(byte[] output)
