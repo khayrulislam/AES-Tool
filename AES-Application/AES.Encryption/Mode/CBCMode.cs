@@ -60,9 +60,11 @@ namespace AES.Encryption.Mode
                 {
                     Array.Copy(textByteArray, i, textBlock, 0, 16);
                 }
-
+                // encrypted cypher 2d byte
                 iv = EncryptBlock(textBlock,iv);
-                Util.PrintHex(iv);
+                // encrypted cypher 1d byte
+                textBlock = Util.Convert2dTo1DArray(iv);
+                Util.Print1DHex(textBlock);
             }
         }
 
@@ -70,7 +72,6 @@ namespace AES.Encryption.Mode
         {
             byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(textBlock));
             byte[][] currentStage = AddRoundKey(input, iv);
-
             return EncryptionRoundIteration(currentStage);
         }
 

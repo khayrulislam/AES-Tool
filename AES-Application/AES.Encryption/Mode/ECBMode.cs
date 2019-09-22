@@ -14,7 +14,6 @@ namespace AES.Encryption.Mode
     public class ECBMode : EncryptionRoundStep,IEncryptionMode
     {
         private Key keyInstance;
-        Parameter param;
         public ECBMode(): base()
         {
                 
@@ -47,24 +46,32 @@ namespace AES.Encryption.Mode
         public void EncryptText(string text, string initialVector)
         {
             byte[] textByteArray= Encoding.ASCII.GetBytes(text);
-            byte[] block = new byte[16];
+            byte[] blockCypher = new byte[16];
             int length = textByteArray.Length;
 
             for(int i = 0; i < length; i += 16)
             {
-                if(i+16 > length)
+                Array.Clear(blockCypher, 0, 16);
+                if (i+16 > length)
                 {
-                    Array.Clear(block,0,16);
-                    Array.Copy(textByteArray,i,block,0,length-i);
-                    block = AddPadding(block, length-i);
+                    Array.Copy(textByteArray,i,blockCypher,0,length-i);
+                    blockCypher = AddPadding(blockCypher, length-i);
                 }
                 else
                 {
-                    Array.Copy(textByteArray,i,block,0,16);
+                    Array.Copy(textByteArray,i,blockCypher,0,16);
                 }
-                byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(block));
-                Util.PrintHex(EncryptionRoundIteration(input));
+                // encrypted cypher text byte
+                blockCypher = EncryptBlock(blockCypher);
+                Util.Print1DHex(blockCypher);
             }
+        }
+
+        private byte[] EncryptBlock(byte[] block)
+        {
+            byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(block));
+            byte[][] result = EncryptionRoundIteration(input);
+            return Util.Convert2dTo1DArray(result);
         }
 
         

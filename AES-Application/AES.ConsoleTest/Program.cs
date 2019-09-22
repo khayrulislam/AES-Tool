@@ -29,7 +29,7 @@ namespace AES.ConsoleTest
             par.Mode = "ecb";
 
             var enc = new Encrypt(par);
-            enc.SetEncryptionMode(new CBCMode());
+            enc.SetEncryptionMode(new ECBMode());
             enc.Execute();
             Console.Read();
 

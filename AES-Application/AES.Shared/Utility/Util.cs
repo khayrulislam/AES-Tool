@@ -59,7 +59,7 @@ namespace AES.Shared.Utility
             return array2d;
         }
 
-        public static void PrintHex(byte[][] result)
+        public static void Print2DHex(byte[][] result)
         {
             for(int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
             {
@@ -67,6 +67,15 @@ namespace AES.Shared.Utility
                 {
                     Console.Write("{0:X} ", result[i][j]);
                 }
+            }
+            Console.WriteLine();
+        }
+
+        public static void Print1DHex(byte[] result)
+        {
+            for (int i = 0; i < result.Length; i++)
+            {
+                Console.Write("{0:X} ", result[i]);
             }
             Console.WriteLine();
         }
@@ -88,6 +97,21 @@ namespace AES.Shared.Utility
                 for(int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
                 {
                     result[i][j] = input[j][i];
+                }
+            }
+            return result;
+        }
+
+
+        public static byte[] Convert2dTo1DArray(byte[][] input)
+        {
+            byte[] result = new byte[Constants.BLOCK_ROW_SIZE * Constants.BLOCK_COLUMN_SIZE];
+
+            for(int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            {
+                for(int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
+                {
+                    result[Constants.BLOCK_ROW_SIZE * i + j] = input[i][j];
                 }
             }
             return result;
