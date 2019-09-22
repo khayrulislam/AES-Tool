@@ -9,8 +9,8 @@ namespace AES.Encryption.Interface
 {
     public interface IEncryptionMode 
     {
-        void ExpandEncryptionKey(byte[] key);
-        void EncryptFile(string inputFilePath,string outputFilePath,string initialVector);
-        void EncryptText(string text, string initialVector);
+        void InitializeEncryption(Parameter param);
+        void EncryptFile();
+        void EncryptText();
     }
 }

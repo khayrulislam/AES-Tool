@@ -14,7 +14,7 @@ namespace AES.Encryption.Mode
     public class CBCMode : EncryptionRoundStep, IEncryptionMode
     {
         private Key keyInstance;
-
+        private Parameter parameter;
         public CBCMode() : base()
         {
 
@@ -33,17 +33,21 @@ namespace AES.Encryption.Mode
             return Util.MatrixTranspose(currentStage);
         }
 
-        public void EncryptFile(string inputFilePath, string outputFilePath, string initialVector)
+        public void EncryptFile()
         {
             
         }
 
-        public void EncryptText(string text, string initialVector)
+
+
+
+
+        public void EncryptText()
         {
             // initial vector convert to 2d array from 1d array
-            byte[][] iv = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(initialVector)));
+            byte[][] iv = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector)));
 
-            byte[] textByteArray = Encoding.ASCII.GetBytes(text);
+            byte[] textByteArray = Encoding.ASCII.GetBytes(parameter.Text);
             byte[] textBlock = new byte[16];
             int length = textByteArray.Length;
 
@@ -62,6 +66,7 @@ namespace AES.Encryption.Mode
                 }
                 // encrypted cypher 2d byte
                 iv = EncryptBlock(textBlock,iv);
+                iv = Util.MatrixTranspose(iv);
                 // encrypted cypher 1d byte
                 textBlock = Util.Convert2dTo1DArray(iv);
                 Util.Print1DHex(textBlock);
@@ -75,10 +80,16 @@ namespace AES.Encryption.Mode
             return EncryptionRoundIteration(currentStage);
         }
 
-        public void ExpandEncryptionKey(byte[] key)
+        private void ExpandEncryptionKey(byte[] key)
         {
             keyInstance = Key.GetKeyInstance;
             keyInstance.InitializeKey(key);
+        }
+
+        public void InitializeEncryption(Parameter param)
+        {
+            this.parameter = param;
+            ExpandEncryptionKey(Encoding.ASCII.GetBytes(parameter.Key));
         }
     }
 }

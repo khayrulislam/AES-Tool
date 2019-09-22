@@ -23,29 +23,18 @@ namespace AES.ConsoleTest
 
             Parameter par = new Parameter();
             par.Key = "Thats my Kung Fu";
-            par.Text = "Two One Nine Two Two";
+            par.Text = "Two One Nine TwoTwo One Nine TwoTwo One Nine TwoTwo One Nine Two";
             par.InitialVector = "ABCDEFGHIPQRSTUV";
             par.Type = "e";
             par.Mode = "ecb";
 
             var enc = new Encrypt(par);
-            enc.SetEncryptionMode(new ECBMode());
+            enc.SetEncryptionMode(new CBCMode());
             enc.Execute();
             Console.Read();
 
 
 
-            /* int[] arr = new int[4] {10,20,30,40 };
-             int[] tt = new int[10];
-
-
-             Array.Copy(arr,0,tt,0,10-);
-
-             for(int i = 0; i < 10; i++)
-             {
-                 Console.WriteLine(tt[i]);
-             }
- */
             Console.Read();
 
 

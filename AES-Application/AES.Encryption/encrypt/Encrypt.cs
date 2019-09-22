@@ -26,9 +26,10 @@ namespace AES.Encryption.encrypt
 
         public void Execute()
         {
-            encMode.ExpandEncryptionKey(Encoding.ASCII.GetBytes(encryptionParameter.Key));
-            encMode.EncryptText(encryptionParameter.Text,encryptionParameter.InitialVector);
-            //encMode.EncryptFile(encryptionParameter.InputFilePath,encryptionParameter.OutputFilePath,encryptionParameter.InitialVector);
+
+            encMode.InitializeEncryption(encryptionParameter);
+            encMode.EncryptText();
+            //encMode.EncryptFile();
         }
     }
 }

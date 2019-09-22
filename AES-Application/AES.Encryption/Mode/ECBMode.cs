@@ -5,6 +5,7 @@ using AES.Shared.KeyExpand;
 using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace AES.Encryption.Mode
     public class ECBMode : EncryptionRoundStep,IEncryptionMode
     {
         private Key keyInstance;
+        private Parameter parameter;
         public ECBMode(): base()
         {
                 
@@ -38,14 +40,27 @@ namespace AES.Encryption.Mode
             keyInstance.InitializeKey(key);
         }
 
-        public void EncryptFile(string inputFilePath, string outputFilePath, string initialVector)
+        public void EncryptFile()
         {
 
         }
 
-        public void EncryptText(string text, string initialVector)
+        private void FileWrite(byte[] output)
         {
-            byte[] textByteArray= Encoding.ASCII.GetBytes(text);
+            FileStream fs;
+            if (!File.Exists(@parameter.OutputFilePath))
+            {
+                fs = File.Create(@parameter.OutputFilePath);
+                fs.Close();
+            }
+            fs = new FileStream(parameter.OutputFilePath, FileMode.Append);
+            fs.Write(output, 0, output.Length);
+            fs.Close();
+        }
+
+        public void EncryptText()
+        {
+            byte[] textByteArray= Encoding.ASCII.GetBytes(parameter.Text);
             byte[] blockCypher = new byte[16];
             int length = textByteArray.Length;
 
@@ -74,6 +89,10 @@ namespace AES.Encryption.Mode
             return Util.Convert2dTo1DArray(result);
         }
 
-        
+        public void InitializeEncryption(Parameter param)
+        {
+            this.parameter = param;
+            ExpandEncryptionKey(Encoding.ASCII.GetBytes(parameter.Key));
+        }
     }
 }
