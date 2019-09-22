@@ -46,9 +46,27 @@ namespace AES.Encryption.Mode
 
         public void EncryptText(string text, string initialVector)
         {
+            byte[] textByteArray= Encoding.ASCII.GetBytes(text);
+            byte[] block = new byte[16];
+            int length = textByteArray.Length;
 
-            byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(text)));
-            Util.PrintHex(EncryptionRoundIteration(input));
+            for(int i = 0; i < length; i += 16)
+            {
+                if(i+16 > length)
+                {
+                    Array.Clear(block,0,16);
+                    Array.Copy(textByteArray,i,block,0,length-i);
+                    block = AddPadding(block, length-i);
+                }
+                else
+                {
+                    Array.Copy(textByteArray,i,block,0,16);
+                }
+                byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(block));
+                Util.PrintHex(EncryptionRoundIteration(input));
+            }
         }
+
+        
     }
 }

@@ -17,17 +17,14 @@ namespace AES.ConsoleTest
         public static void Main(string[] args)
         {
 
-/*            string inputText = "Two One Nine Two";
-            string key = "Thats my Kung Fu";
-*/
             string inputText = "qwertyuiopasdfgh";
             string key = "1122334455667788";
 
 
             Parameter par = new Parameter();
             par.Key = "Thats my Kung Fu";
-            par.Text = "Two One Nine Two";
-            par.InitialVector = "ABCDEFGHIPQRSTUV" ;
+            par.Text = "Two One Nine Two Two";
+            par.InitialVector = "ABCDEFGHIPQRSTUV";
             par.Type = "e";
             par.Mode = "ecb";
 
@@ -35,21 +32,21 @@ namespace AES.ConsoleTest
             enc.SetEncryptionMode(new CBCMode());
             enc.Execute();
             Console.Read();
-            
-            /*           byte[] inputBytes = Encoding.ASCII.GetBytes(inputText);
-                       byte[] inputKeys = Encoding.ASCII.GetBytes(key);
 
 
-                       using(Stream file = File.OpenWrite(@"../../../AES.shared/s-Box/box.txt"))
-                       {
-                           file.Write(inputBytes,0,inputBytes.Length);
-                       }*/
 
-            /*Encryption enc = new Encryption(inputKeys);
-            Util.PrintHex(enc.Encrypt(inputBytes));
-            Console.Read();*/
+            /* int[] arr = new int[4] {10,20,30,40 };
+             int[] tt = new int[10];
 
 
+             Array.Copy(arr,0,tt,0,10-);
+
+             for(int i = 0; i < 10; i++)
+             {
+                 Console.WriteLine(tt[i]);
+             }
+ */
+            Console.Read();
 
 
 

@@ -40,10 +40,38 @@ namespace AES.Encryption.Mode
 
         public void EncryptText(string text, string initialVector)
         {
-            byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(text)));
+            // initial vector convert to 2d array from 1d array
             byte[][] iv = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(initialVector)));
-            byte[][] currentStage = AddRoundKey(input,iv);
-            Util.PrintHex(EncryptionRoundIteration(currentStage));
+
+            byte[] textByteArray = Encoding.ASCII.GetBytes(text);
+            byte[] textBlock = new byte[16];
+            int length = textByteArray.Length;
+
+            // extract block from the text byte array
+            for (int i = 0; i < length; i += 16)
+            {
+                Array.Clear(textBlock, 0, 16);
+                if (i + 16 > length)
+                {
+                    Array.Copy(textByteArray, i, textBlock, 0, length - i);
+                    textBlock = AddPadding(textBlock, length - i);
+                }
+                else
+                {
+                    Array.Copy(textByteArray, i, textBlock, 0, 16);
+                }
+
+                iv = EncryptBlock(textBlock,iv);
+                Util.PrintHex(iv);
+            }
+        }
+
+        private byte[][] EncryptBlock(byte[] textBlock, byte[][] iv)
+        {
+            byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(textBlock));
+            byte[][] currentStage = AddRoundKey(input, iv);
+
+            return EncryptionRoundIteration(currentStage);
         }
 
         public void ExpandEncryptionKey(byte[] key)

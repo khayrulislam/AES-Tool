@@ -66,5 +66,20 @@ namespace AES.Encryption.steps
             return result;
         }
 
+        public byte[] AddPadding(byte[] input, int length)
+        {
+            byte[] paddingResult = new byte[16];
+
+            Array.Copy(input, 0, paddingResult, 0, length);
+
+            for (int i = length; i < 16; i++)
+            {
+                paddingResult[i] = 0;
+            }
+            paddingResult[15] = (byte)(16 - length);
+
+            return paddingResult;
+        }
+
     }
 }
