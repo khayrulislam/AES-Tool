@@ -27,11 +27,12 @@ namespace AES.ConsoleTest
             Parameter par = new Parameter();
             par.Key = "Thats my Kung Fu";
             par.Text = "Two One Nine Two";
+            par.InitialVector = "ABCDEFGHIPQRSTUV" ;
             par.Type = "e";
             par.Mode = "ecb";
 
             var enc = new Encrypt(par);
-            enc.SetEncryptionMode(new ECBMode());
+            enc.SetEncryptionMode(new CBCMode());
             enc.Execute();
             Console.Read();
             
