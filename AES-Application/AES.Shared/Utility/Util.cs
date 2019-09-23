@@ -65,7 +65,7 @@ namespace AES.Shared.Utility
             {
                 for(int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
                 {
-                    Console.Write("{0:X} ", result[i][j]);
+                    Console.Write("{0:X2} ", result[i][j]);
                 }
             }
             Console.WriteLine();

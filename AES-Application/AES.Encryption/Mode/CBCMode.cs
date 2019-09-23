@@ -17,7 +17,6 @@ namespace AES.Encryption.Mode
         private Parameter parameter;
         public CBCMode() : base()
         {
-
         }
 
         public byte[][] EncryptionRoundIteration(byte[][] currentStage)
@@ -63,10 +62,11 @@ namespace AES.Encryption.Mode
                 }
                 // encrypted cypher 2d byte
                 iv = EncryptBlock(textBlock,iv);
+                Util.Print2DHex(iv);
                 iv = Util.MatrixTranspose(iv);
                 // encrypted cypher 1d byte
                 textBlock = Util.Convert2dTo1DArray(iv);
-                Util.Print1DHex(textBlock);
+                
             }
         }
 

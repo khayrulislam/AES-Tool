@@ -28,8 +28,8 @@ namespace AES.Encryption.encrypt
             ModeInitialization();
             IEncryptDecryptMode mode = modeMap[param.Type + param.Mode];
             mode.InitializeMode(param);
-            //mode.ExecuteFileOperation();
-            mode.ExecuteTextOperation();
+            mode.ExecuteFileOperation();
+            //mode.ExecuteTextOperation();
         }
 
         private void ModeInitialization()
