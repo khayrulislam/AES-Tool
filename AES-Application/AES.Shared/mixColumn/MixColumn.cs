@@ -14,6 +14,7 @@ namespace AES.Shared.mixColumn
         public static MixColumn mixColumnInstance = null;
 
         private int[][] matrix;
+        private int[][] inverseMatrix;
         private MixColumn()
         {
             InitializeMixColumnMatrix();
@@ -23,15 +24,19 @@ namespace AES.Shared.mixColumn
         {
             DataReader dReader = new DataReader();
             List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.MIX_COLUMN_FILE_PATH);
+            List<string[]> inverseLines = dReader.GetLinesOfWordsFromFile(Constants.INVERSE_MIX_COLUMN_FILE_PATH);
 
-            matrix = new int[4][];
+            matrix = new int[Constants.BLOCK_ROW_SIZE][];
+            inverseMatrix = new int[Constants.BLOCK_ROW_SIZE][];
 
             for (int i = 0; i < lines.Count; i++)
             {
                 matrix[i] = new int[lines[i].Length];
+                inverseMatrix[i] = new int[inverseLines[i].Length];
                 for (int j = 0; j < lines[i].Length; j++)
                 {
                     matrix[i][j] = Convert.ToInt32(lines[i][j]);
+                    inverseMatrix[i][j] = Convert.ToInt32(inverseLines[i][j]);
                 }
             }
         }
@@ -49,7 +54,7 @@ namespace AES.Shared.mixColumn
         }
 
         // matrix multiplication with defined matrix
-        public byte[][] CalculateMixColumn(byte[][] input)
+        public byte[][] CalculateMixColumn(byte[][] input, bool isInverse)
         {
             byte[][] result = Util.Initialize2DArray();
             
@@ -62,7 +67,7 @@ namespace AES.Shared.mixColumn
                     {
                         col[k] = input[k][j];
                     }
-                    result[i][j] = Multiplication(matrix[i], col);
+                    result[i][j] = isInverse? Multiplication(inverseMatrix[i], col) : Multiplication(matrix[i], col);
                 }
             }
             return result;
@@ -71,19 +76,22 @@ namespace AES.Shared.mixColumn
         private byte Multiplication(int[] matrixRow, byte[] col)
         {
             int result = 0;
-            int value;
+            int iterativeValue;
             for(int i = 0; i < Constants.BLOCK_COLUMN_SIZE; i++)
             {
-                value = col[i];
-                if (matrixRow[i] == 2)
+                iterativeValue = col[i];
+                int tempResult = 0;
+                int num = matrixRow[i];
+                while (num!=0)
                 {
-                    value = Multiply2(value);
+                    if (num % 2 != 0)
+                    {
+                        tempResult ^= iterativeValue;
+                    }
+                    num /= 2;
+                    Multiply2(iterativeValue);
                 }
-                else if(matrixRow[i] == 3)
-                {
-                    value = Multiply3(value);
-                }
-                result ^= value;
+                result ^= tempResult;
             }
             return Convert.ToByte(result); 
         }
@@ -104,9 +112,5 @@ namespace AES.Shared.mixColumn
             return value << 1 ^ constant;
         }
 
-        private int Multiply3(int value)
-        {
-            return value ^ Multiply2(value);
-        }
     }
 }

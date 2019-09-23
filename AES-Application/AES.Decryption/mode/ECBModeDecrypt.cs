@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AES.Decryption.mode
 {
-    public class ECBModeDecrypt: EncryptionRoundStep,IEncryptionMode
+    public class ECBModeDecrypt: EncryptDecryptRoundStep,IEncryptionMode
     {
         private Parameter parameter;
         private Key keyInstance;

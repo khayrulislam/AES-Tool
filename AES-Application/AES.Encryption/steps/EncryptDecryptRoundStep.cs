@@ -10,17 +10,20 @@ using System.Threading.Tasks;
 
 namespace AES.Encryption.steps
 {
-    public class EncryptionRoundStep
+    public class EncryptDecryptRoundStep
     {
         private SBox sBoxInstance;
 
         private MixColumn mixColumnInstance;
 
+        private bool isInverse;
+
         // create sbox and mixcolumn instance for next use
-        public EncryptionRoundStep()
+        public EncryptDecryptRoundStep()
         {
             sBoxInstance = SBox.GetSBoxInstance;
             mixColumnInstance = MixColumn.GetMixColumnInstance;
+            this.isInverse = false;
         }
 
         // substitute byte using sbox
@@ -31,7 +34,7 @@ namespace AES.Encryption.steps
             {
                 for (int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
                 {
-                    currentStage[i][j] = sBoxInstance.GetSubstituteByte(currentStage[i][j],false);
+                    currentStage[i][j] = sBoxInstance.GetSubstituteByte(currentStage[i][j],isInverse);
                 }
             }
             return currentStage;
@@ -50,7 +53,7 @@ namespace AES.Encryption.steps
         // multiply with a fix matrix
         public byte[][] MixColumnOperation(byte[][] currentStage)
         {
-            return mixColumnInstance.CalculateMixColumn(currentStage);
+            return mixColumnInstance.CalculateMixColumn(currentStage, false);
         }
 
         // Add round key general xor operation on text byte and key

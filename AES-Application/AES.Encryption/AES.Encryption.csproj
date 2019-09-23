@@ -46,7 +46,7 @@
     <Compile Include="mode\CBCMode.cs" />
     <Compile Include="mode\ECBMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="steps\EncryptionRoundStep.cs" />
+    <Compile Include="steps\EncryptDecryptRoundStep.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AES.Shared\AES.Shared.csproj">
