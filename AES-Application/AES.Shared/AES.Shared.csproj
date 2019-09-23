@@ -51,7 +51,6 @@
     <Compile Include="utility\Util.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="keyExpand\Input.txt" />
     <Content Include="keyExpand\keyConstant.txt" />
     <Content Include="mixColumn\MatrixConstant.txt" />
     <Content Include="s-Box\inverse-s-box.txt" />
