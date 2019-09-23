@@ -1,7 +1,6 @@
-﻿using AES.Encryption.encrypt;
-using AES.Encryption.Interface;
-using AES.Encryption.steps;
+﻿using AES.Encryption.steps;
 using AES.Shared.KeyExpand;
+using AES.Shared.Interface;
 using AES.Shared.utility;
 using AES.Shared.Utility;
 using System;
@@ -13,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AES.Encryption.Mode
 {
-    public class ECBMode : EncryptDecryptRoundStep,IEncryptionMode
+    public class ECBMode : EncryptDecryptRoundStep,IEncryptDecryptMode
     {
         private Key keyInstance;
         private Parameter parameter;
@@ -41,7 +40,7 @@ namespace AES.Encryption.Mode
             keyInstance.InitializeKey(key);
         }
 
-        public void EncryptFile()
+        public void ExecuteFileOperation()
         {
             int bufferSize=16;
             FileStream fileStram = new FileStream(parameter.InputFilePath, FileMode.Open, FileAccess.Read);
@@ -74,7 +73,7 @@ namespace AES.Encryption.Mode
             fs.Close();
         }
 
-        public void EncryptText()
+        public void ExecuteTextOperation()
         {
             byte[] textByteArray= Encoding.ASCII.GetBytes(parameter.Text);
             byte[] blockCypher = new byte[16];
@@ -105,7 +104,7 @@ namespace AES.Encryption.Mode
             return Util.Convert2dTo1DArray(result);
         }
 
-        public void InitializeEncryption(Parameter param)
+        public void InitializeMode(Parameter param)
         {
             this.parameter = param;
             ExpandEncryptionKey(Encoding.ASCII.GetBytes(parameter.Key));

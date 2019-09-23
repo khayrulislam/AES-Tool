@@ -1,4 +1,4 @@
-﻿using AES.Encryption.Interface;
+﻿using AES.Shared.Interface;
 using AES.Encryption.steps;
 using AES.Shared.KeyExpand;
 using AES.Shared.utility;
@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace AES.Decryption.mode
 {
-    public class ECBModeDecrypt: EncryptDecryptRoundStep,IEncryptionMode
+    public class ECBModeDecrypt: EncryptDecryptRoundStep,IEncryptDecryptMode
     {
         private Parameter parameter;
         private Key keyInstance;
 
-        public void EncryptFile()
+        public void ExecuteFileOperation()
         {
             int bufferSize = 16;
             FileStream fileStram = new FileStream(parameter.InputFilePath, FileMode.Open, FileAccess.Read);
@@ -69,12 +69,12 @@ namespace AES.Decryption.mode
             }
             return Util.MatrixTranspose(currentStage);
         }*/
-        public void EncryptText()
+        public void ExecuteTextOperation()
         {
 
         }
 
-        public void InitializeEncryption(Parameter param)
+        public void InitializeMode(Parameter param)
         {
             this.parameter = param;
             ExpandDecryptKey(Encoding.ASCII.GetBytes(parameter.Key));

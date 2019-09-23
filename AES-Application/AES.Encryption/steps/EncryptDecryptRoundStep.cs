@@ -16,14 +16,13 @@ namespace AES.Encryption.steps
 
         private MixColumn mixColumnInstance;
 
-        private bool isInverse;
+        public bool isInverse;
 
         // create sbox and mixcolumn instance for next use
         public EncryptDecryptRoundStep()
         {
             sBoxInstance = SBox.GetSBoxInstance;
             mixColumnInstance = MixColumn.GetMixColumnInstance;
-            this.isInverse = false;
         }
 
         // substitute byte using sbox

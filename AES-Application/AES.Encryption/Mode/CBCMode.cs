@@ -1,7 +1,6 @@
-﻿using AES.Encryption.encrypt;
-using AES.Encryption.Interface;
-using AES.Encryption.steps;
+﻿using AES.Encryption.steps;
 using AES.Shared.KeyExpand;
+using AES.Shared.Interface;
 using AES.Shared.utility;
 using AES.Shared.Utility;
 using System;
@@ -12,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AES.Encryption.Mode
 {
-    public class CBCMode : EncryptDecryptRoundStep, IEncryptionMode
+    public class CBCMode : EncryptDecryptRoundStep, IEncryptDecryptMode
     {
         private Key keyInstance;
         private Parameter parameter;
@@ -34,7 +33,7 @@ namespace AES.Encryption.Mode
             return Util.MatrixTranspose(currentStage);
         }
 
-        public void EncryptFile()
+        public void ExecuteFileOperation()
         {
             
         }
@@ -43,7 +42,7 @@ namespace AES.Encryption.Mode
 
 
 
-        public void EncryptText()
+        public void ExecuteTextOperation()
         {
             // initial vector convert to 2d array from 1d array
             byte[][] iv = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector)));
@@ -87,9 +86,10 @@ namespace AES.Encryption.Mode
             keyInstance.InitializeKey(key);
         }
 
-        public void InitializeEncryption(Parameter param)
+        public void InitializeMode(Parameter param)
         {
             this.parameter = param;
+            this.isInverse = false;
             ExpandEncryptionKey(Encoding.ASCII.GetBytes(parameter.Key));
         }
     }

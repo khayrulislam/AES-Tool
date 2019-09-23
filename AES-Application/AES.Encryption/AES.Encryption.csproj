@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="encrypt\Encrypt.cs" />
-    <Compile Include="interface\IEncryptionMode.cs" />
     <Compile Include="mode\CBCMode.cs" />
     <Compile Include="mode\ECBMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

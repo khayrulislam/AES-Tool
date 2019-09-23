@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="fileReader\DataReader.cs" />
+    <Compile Include="Interface\IEncryptDecryptMode.cs" />
     <Compile Include="keyExpand\Key.cs" />
     <Compile Include="mixColumn\MixColumn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

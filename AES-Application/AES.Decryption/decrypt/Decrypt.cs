@@ -1,4 +1,4 @@
-﻿using AES.Encryption.Interface;
+﻿using AES.Shared.Interface;
 using AES.Shared.utility;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace AES.Decryption.decrypt
 {
     public class Decrypt
     {
-        private IEncryptionMode encMode;
+        private IEncryptDecryptMode encMode;
 
         private Parameter encryptionParameter;
 
@@ -19,7 +19,7 @@ namespace AES.Decryption.decrypt
             this.encryptionParameter = parameter;
         }
 
-        public void SetEncryptionMode(IEncryptionMode encryptionMode)
+        public void SetEncryptionMode(IEncryptDecryptMode encryptionMode)
         {
             this.encMode = encryptionMode;
         }
@@ -27,8 +27,8 @@ namespace AES.Decryption.decrypt
         public void Execute()
         {
 
-            encMode.InitializeEncryption(encryptionParameter);
-            encMode.EncryptText();
+            encMode.InitializeMode(encryptionParameter);
+            encMode.ExecuteTextOperation();
             //encMode.EncryptFile();
         }
     }
