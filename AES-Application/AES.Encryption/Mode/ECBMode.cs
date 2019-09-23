@@ -1,4 +1,4 @@
-﻿using AES.Encryption.steps;
+﻿using AES.Shared.steps;
 using AES.Shared.KeyExpand;
 using AES.Shared.Interface;
 using AES.Shared.utility;
@@ -33,7 +33,7 @@ namespace AES.Encryption.Mode
             return Util.MatrixTranspose(currentStage);
         }
 
-        public void ExpandEncryptionKey(byte[] key)
+        public void ExpandKey(byte[] key)
         {
             keyInstance = Key.GetKeyInstance;
             keyInstance.InitializeKey(key);
@@ -41,23 +41,25 @@ namespace AES.Encryption.Mode
 
         public void ExecuteFileOperation()
         {
-            int bufferSize=16;
-            FileStream fileStram = new FileStream(parameter.InputFilePath, FileMode.Open, FileAccess.Read);
-            using (fileStram)
+
+            using (FileStream fileStram = new FileStream(@parameter.InputFilePath, FileMode.Open, FileAccess.Read))
             {
-                byte[] buffer = new byte[bufferSize];
+                byte[] inputBufferByte = new byte[Constants.INPUT_BUFFER_SIZE];
                 fileStram.Seek(0, SeekOrigin.Begin);
-                int bytesRead = fileStram.Read(buffer, 0, bufferSize);
+                int bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
+                byte[][] iv = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector)));
+                this.fileCreate = true;
 
                 while (bytesRead > 0)
                 {
-                    byte[] cypher = EncryptBlock(buffer);
-                    Array.Clear(buffer,0,16);
-                    FileWrite(cypher,parameter.OutputFilePath);
+                    byte[] cypher = EncryptBlock(inputBufferByte);
+                    Array.Clear(inputBufferByte, 0, 16);
+                    FileWrite(cypher, parameter.OutputFilePath);
                     Util.Print1DHex(cypher);
-                    bytesRead = fileStram.Read(buffer, 0, bufferSize);
+                    bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
                 }
             }
+
         }
 
         public void ExecuteTextOperation()
@@ -94,7 +96,7 @@ namespace AES.Encryption.Mode
         {
             this.parameter = param;
             this.isInverse = false;
-            ExpandEncryptionKey(Encoding.ASCII.GetBytes(parameter.Key));
+            ExpandKey(Encoding.ASCII.GetBytes(parameter.Key));
         }
     }
 }

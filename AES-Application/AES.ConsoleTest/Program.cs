@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AES.Encryption.encrypt;
-using AES.Decryption.mode;
 
 namespace AES.ConsoleTest
 {
@@ -22,10 +21,10 @@ namespace AES.ConsoleTest
             par.Key = "Thats my Kung Fu";
             par.Text = "Two One Nine TwoTwo One Nine TwoTwo One Nine Two";
             par.InitialVector = "ABCDEFGHIPQRSTUV";
-            par.Type = "e";
-            par.Mode = "cbc";
+            par.Type = "d";
+            par.Mode = "ecb";
             par.InputFilePath = Constants.OUTPUT_FILE_PATH;
-            par.OutputFilePath = Constants.OUTPUT_FILE_PATH;
+            par.OutputFilePath = Constants.OUTPUT_FILE_PATH2;
 
             var enc = new Encrypt(par);
             enc.Execute();

@@ -76,10 +76,10 @@ namespace AES.Shared.mixColumn
         private byte Multiplication(int[] matrixRow, byte[] col)
         {
             int result = 0;
-            int iterativeValue;
+            int iterativeValue,initialValue;
             for(int i = 0; i < Constants.BLOCK_COLUMN_SIZE; i++)
             {
-                iterativeValue = col[i];
+                initialValue = iterativeValue = col[i];
                 int tempResult = 0;
                 int num = matrixRow[i];
                 while (num!=0)

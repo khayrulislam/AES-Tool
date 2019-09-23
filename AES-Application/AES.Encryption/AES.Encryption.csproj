@@ -43,9 +43,10 @@
   <ItemGroup>
     <Compile Include="encrypt\Encrypt.cs" />
     <Compile Include="mode\CBCMode.cs" />
+    <Compile Include="mode\CBCModeDecrypt.cs" />
     <Compile Include="mode\ECBMode.cs" />
+    <Compile Include="mode\ECBModeDecrypt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="steps\EncryptDecryptRoundStep.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AES.Shared\AES.Shared.csproj">

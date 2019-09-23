@@ -1,18 +1,14 @@
-﻿using AES.Encryption.Mode;
+﻿using AES.Encryption.mode;
+using AES.Encryption.Mode;
 using AES.Shared.Interface;
 using AES.Shared.utility;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AES.Encryption.encrypt
 {
     public class Encrypt
     {
 
-        private IEncryptDecryptMode encMode;
 
         private Parameter param;
 
@@ -35,7 +31,8 @@ namespace AES.Encryption.encrypt
         private void ModeInitialization()
         {
             modeMap["eecb"] = new ECBMode(); 
-            modeMap["ecbc"] = new CBCMode(); 
+            modeMap["ecbc"] = new CBCMode();
+            modeMap["decb"] = new ECBModeDecrypt();
         }
     }
 }

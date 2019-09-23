@@ -47,6 +47,7 @@
     <Compile Include="mixColumn\MixColumn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="s-Box\SBox.cs" />
+    <Compile Include="steps\EncryptDecryptRoundStep.cs" />
     <Compile Include="utility\Constants.cs" />
     <Compile Include="utility\Parameter.cs" />
     <Compile Include="utility\Util.cs" />
