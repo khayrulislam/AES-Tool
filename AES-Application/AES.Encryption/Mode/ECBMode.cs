@@ -107,6 +107,7 @@ namespace AES.Encryption.Mode
         public void InitializeMode(Parameter param)
         {
             this.parameter = param;
+            this.isInverse = false;
             ExpandEncryptionKey(Encoding.ASCII.GetBytes(parameter.Key));
         }
     }

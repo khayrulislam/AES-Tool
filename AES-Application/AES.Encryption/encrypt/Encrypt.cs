@@ -1,4 +1,5 @@
-﻿using AES.Shared.Interface;
+﻿using AES.Encryption.Mode;
+using AES.Shared.Interface;
 using AES.Shared.utility;
 using System;
 using System.Collections.Generic;
@@ -13,24 +14,28 @@ namespace AES.Encryption.encrypt
 
         private IEncryptDecryptMode encMode;
 
-        private Parameter encryptionParameter;
+        private Parameter param;
+
+        Dictionary<string, IEncryptDecryptMode> modeMap = new Dictionary<string, IEncryptDecryptMode>();
 
         public Encrypt(Parameter parameter)
         {
-            this.encryptionParameter = parameter;
-        }
-
-        public void SetEncryptionMode(IEncryptDecryptMode encryptionMode)
-        {
-            this.encMode = encryptionMode;
+            this.param = parameter;
         }
 
         public void Execute()
         {
-
-            encMode.InitializeMode(encryptionParameter);
+            ModeInitialization();
+            IEncryptDecryptMode mode = modeMap[param.Type + param.Mode];
+            mode.InitializeMode(param);
             //encMode.EncryptText();
-            encMode.ExecuteFileOperation();
+            mode.ExecuteFileOperation();
+        }
+
+        private void ModeInitialization()
+        {
+            modeMap["eecb"] = new ECBMode(); 
+            modeMap["ecbc"] = new CBCMode(); 
         }
     }
 }

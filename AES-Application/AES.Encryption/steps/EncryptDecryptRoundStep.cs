@@ -28,7 +28,6 @@ namespace AES.Encryption.steps
         // substitute byte using sbox
         public byte[][] SubstituteByte(byte[][] currentStage)
         {
-
             for (int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
             {
                 for (int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)

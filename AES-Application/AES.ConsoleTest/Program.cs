@@ -32,12 +32,6 @@ namespace AES.ConsoleTest
             par.OutputFilePath = Constants.INPUT_FILE_PATH;
 
             var enc = new Encrypt(par);
-            enc.SetEncryptionMode(new ECBModeDecrypt());
-            enc.Execute();
-            Console.Read();
-
-
-
             Console.Read();
 
 
