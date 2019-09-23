@@ -61,7 +61,6 @@ namespace AES.Shared.KeyExpand
         public void InitializeKey(byte []initialKey)
         {
             byte [][] initialKeyWords = Util.Convert1Dto2DArray(initialKey);
-
             for (int i = 0; i < initialKeyWords.Length; i++)
             {
                 KeyWords[i] = initialKeyWords[i];

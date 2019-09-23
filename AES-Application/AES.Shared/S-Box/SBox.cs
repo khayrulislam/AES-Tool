@@ -36,7 +36,7 @@ namespace AES.Shared.s_Box
         {
             int row = GetRowNumber(value);
             int col = GetColumnNumber(value);
-            return isInverse? inverseSBox[row][col] : sBox[row][col];
+            return (isInverse ? inverseSBox[row][col] : sBox[row][col]);
         }
 
         private int GetColumnNumber(int value)

@@ -20,7 +20,7 @@ namespace AES.ConsoleTest
 
             Parameter par = new Parameter();
             par.Key = "Thats my Kung Fu";
-            par.Text = "Two One Nine TwoTwo One Nine TwoTwo One Nine TwoTwo One Nine Two";
+            par.Text = "Two One Nine Two";
             par.InitialVector = "ABCDEFGHIPQRSTUV";
             par.Type = "e";
             par.Mode = "ecb";
