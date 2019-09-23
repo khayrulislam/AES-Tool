@@ -102,7 +102,7 @@ namespace AES.Shared.KeyExpand
             // substitute byte
             for(int i = 0; i < result.Length; i++)
             {
-                result[i] = sBoxInstance.GetSBoxByte(result[i]);
+                result[i] = sBoxInstance.GetSubstituteByte(result[i],false);
             }
             // xor with constant
             result = Util.WordXOR(result, this.KeyConstant[keyConstantNumber]);

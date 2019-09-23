@@ -11,21 +11,14 @@ namespace AES.Shared.S_Box
 {
     public sealed class SBox
     {
-
-        private byte[][] box;
-
-        private int sBoxSize = 16;
+        private byte[][] sBox;
+        private byte[][] inverseSBox;
 
         public static SBox sBoxInstance = null;
 
         private SBox()
         {
-            box = new byte[sBoxSize][];
-            for(int i = 0; i < sBoxSize; i++)
-            {
-                box[i] = new byte[sBoxSize];
-            }
-            InitializeSBox();
+            InitializeBox();
         }
 
         public static SBox GetSBoxInstance
@@ -39,13 +32,13 @@ namespace AES.Shared.S_Box
                 return sBoxInstance;
             }
         }
-        public byte GetSBoxByte(byte value)
+        public byte GetSubstituteByte(byte value,bool isInverse)
         {
             int row = GetRowNumber(value);
             int col = GetColumnNumber(value);
-
-            return box[row][col];
+            return isInverse? inverseSBox[row][col] : sBox[row][col];
         }
+
         private int GetColumnNumber(int value)
         {
             int row = GetRowNumber(value);
@@ -57,19 +50,33 @@ namespace AES.Shared.S_Box
         {
             return value >> 4;
         }
-        private void InitializeSBox()
+        private void InitializeBox()
         {
-            DataReader dReader = new DataReader();
-            List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.S_BOX_FILE_PATH);
+            InitializeArray();
 
-            for (int i = 0; i < lines.Count; i++)
+            DataReader dReader = new DataReader();
+            List<string[]> sBoxlines = dReader.GetLinesOfWordsFromFile(Constants.S_BOX_FILE_PATH);
+            List<string[]> inverseSBoxlines = dReader.GetLinesOfWordsFromFile(Constants.INVERSE_S_BOX_FILE_PATH);
+
+            for (int i = 0; i < sBoxlines.Count; i++)
             {
-                for (int j = 0; j < lines[i].Length; j++)
+                for (int j = 0; j < sBoxlines[i].Length; j++)
                 {
-                    box[i][j] = Util.GetByte(lines[i][j]);
+                    sBox[i][j] = Util.GetByte(sBoxlines[i][j]);
+                    inverseSBox[i][j] = Util.GetByte(inverseSBoxlines[i][j]);
                 }
             }
         }
 
+        private void InitializeArray()
+        {
+            sBox = new byte[Constants.BOX_SIZE][];
+            inverseSBox = new byte[Constants.BOX_SIZE][];
+            for (int i = 0; i < Constants.BOX_SIZE; i++)
+            {
+                sBox[i] = new byte[Constants.BOX_SIZE];
+                inverseSBox[i] = new byte[Constants.BOX_SIZE];
+            }
+        }
     }
 }

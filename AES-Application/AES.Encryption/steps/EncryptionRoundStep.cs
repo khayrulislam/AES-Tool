@@ -31,7 +31,7 @@ namespace AES.Encryption.steps
             {
                 for (int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
                 {
-                    currentStage[i][j] = sBoxInstance.GetSBoxByte(currentStage[i][j]);
+                    currentStage[i][j] = sBoxInstance.GetSubstituteByte(currentStage[i][j],false);
                 }
             }
             return currentStage;
