@@ -1,5 +1,5 @@
 ﻿using AES.Shared.mixColumn;
-using AES.Shared.S_Box;
+using AES.Shared.s_Box;
 using AES.Shared.utility;
 using AES.Shared.Utility;
 using System;

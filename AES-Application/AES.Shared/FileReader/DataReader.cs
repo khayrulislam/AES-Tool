@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AES.Shared.mixColumn;
-using AES.Shared.S_Box;
+using AES.Shared.s_Box;
 
 namespace AES.Shared.FileReader
 {

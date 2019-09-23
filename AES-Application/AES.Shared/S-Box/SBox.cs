@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AES.Shared.S_Box
+namespace AES.Shared.s_Box
 {
     public sealed class SBox
     {
