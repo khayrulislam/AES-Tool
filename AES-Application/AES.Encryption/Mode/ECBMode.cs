@@ -60,20 +60,6 @@ namespace AES.Encryption.Mode
             }
         }
 
-        /*private void FileWrite(byte[] output)
-        {
-            FileStream fs;
-            if (File.Exists(@parameter.OutputFilePath))
-            {
-                File.Delete(@parameter.OutputFilePath);
-            }
-            fs = File.Create(@parameter.OutputFilePath);
-            fs.Close();
-            fs = new FileStream(parameter.OutputFilePath, FileMode.Append);
-            fs.Write(output, 0, output.Length);
-            fs.Close();
-        }*/
-
         public void ExecuteTextOperation()
         {
             byte[] textByteArray= Encoding.ASCII.GetBytes(parameter.Text);

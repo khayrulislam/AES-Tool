@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace AES.Encryption.Mode
 {
@@ -34,7 +35,25 @@ namespace AES.Encryption.Mode
 
         public void ExecuteFileOperation()
         {
-            
+            using (FileStream fileStram = new FileStream(@parameter.InputFilePath, FileMode.Open, FileAccess.Read))
+            {
+                byte[] inputBufferByte = new byte[Constants.INPUT_BUFFER_SIZE];
+                fileStram.Seek(0, SeekOrigin.Begin);
+                int bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
+                byte[][] iv = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector)));
+                this.fileCreate = true;
+
+                while (bytesRead > 0)
+                {
+                    // encrypted cypher byte array in 2d foramte;
+                    iv = EncryptBlock(inputBufferByte,iv);
+                    Array.Clear(inputBufferByte, 0, 16);
+                    FileWrite(Util.Convert2dTo1DArray(iv), parameter.OutputFilePath);
+                    //Util.Print2DHex(iv);
+                    bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
+                    iv = Util.MatrixTranspose(iv);
+                }
+            }
         }
 
 
@@ -64,8 +83,6 @@ namespace AES.Encryption.Mode
                 iv = EncryptBlock(textBlock,iv);
                 Util.Print2DHex(iv);
                 iv = Util.MatrixTranspose(iv);
-                // encrypted cypher 1d byte
-                textBlock = Util.Convert2dTo1DArray(iv);
                 
             }
         }

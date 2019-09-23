@@ -75,7 +75,7 @@ namespace AES.Shared.Utility
         {
             for (int i = 0; i < result.Length; i++)
             {
-                Console.Write("{0:X} ", result[i]);
+                Console.Write("{0:X2} ", result[i]);
             }
             Console.WriteLine();
         }

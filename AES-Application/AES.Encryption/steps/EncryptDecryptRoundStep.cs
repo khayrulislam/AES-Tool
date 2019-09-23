@@ -19,6 +19,8 @@ namespace AES.Encryption.steps
 
         public bool isInverse;
 
+        public bool fileCreate;
+
         // create sbox and mixcolumn instance for next use
         public EncryptDecryptRoundStep()
         {
@@ -85,6 +87,21 @@ namespace AES.Encryption.steps
 
         public void FileWrite(byte[] output,string filePath)
         {
+            if (fileCreate)
+            {
+                CreateFile(filePath);
+                fileCreate = false;
+            }
+            using (FileStream fs = new FileStream(@filePath, FileMode.Append))
+            {
+                fs.Write(output, 0, output.Length);
+                fs.Close();
+            }
+            
+        }
+
+        private void CreateFile(string filePath)
+        {
             FileStream fs;
             if (File.Exists(@filePath))
             {
@@ -92,10 +109,6 @@ namespace AES.Encryption.steps
             }
             fs = File.Create(@filePath);
             fs.Close();
-            fs = new FileStream(@filePath, FileMode.Append);
-            fs.Write(output, 0, output.Length);
-            fs.Close();
         }
-
     }
 }
