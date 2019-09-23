@@ -44,7 +44,7 @@ namespace AES.Encryption.steps
         {
             for (int i = 1; i < Constants.BLOCK_ROW_SIZE; i++)
             {
-                currentStage[i] = Util.ShiftRow(currentStage[i], i);
+                currentStage[i] = Util.ShiftRow(currentStage[i], i, isInverse);
             }
             return currentStage;
         }
@@ -52,7 +52,7 @@ namespace AES.Encryption.steps
         // multiply with a fix matrix
         public byte[][] MixColumnOperation(byte[][] currentStage)
         {
-            return mixColumnInstance.CalculateMixColumn(currentStage, false);
+            return mixColumnInstance.CalculateMixColumn(currentStage, isInverse);
         }
 
         // Add round key general xor operation on text byte and key

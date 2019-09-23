@@ -14,13 +14,13 @@ namespace AES.Shared.Utility
         {'8', 0x8},{'9', 0x9},{'a', 0xA},{'b', 0xB},{'c', 0xC},{'d', 0xD},{'e', 0xE},{'f', 0xF},
         };
 
-        public static byte[] ShiftRow(byte[] row, int shiftCount)
+        public static byte[] ShiftRow(byte[] row, int shiftCount, bool isRightShift)
         {
             byte[] rowShiftResult = new byte[row.Length];
 
             for (int i = 0; i < row.Length; i++)
             {
-                rowShiftResult[i] = row[(i + shiftCount) % row.Length];
+                rowShiftResult[i] = row[ isRightShift ? (i + shiftCount) % row.Length : ( row.Length + i + shiftCount) % row.Length];
             }
             return rowShiftResult;
         }

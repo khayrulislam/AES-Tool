@@ -97,7 +97,7 @@ namespace AES.Shared.KeyExpand
         private byte[] GetGResult(byte[] word, int keyConstantNumber)
         {
             // one byte left shift;
-            byte[] result = Util.ShiftRow(word,1);
+            byte[] result = Util.ShiftRow(word,1, false);
 
             // substitute byte
             for(int i = 0; i < result.Length; i++)
