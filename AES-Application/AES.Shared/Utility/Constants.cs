@@ -11,8 +11,8 @@
         public static string MIX_COLUMN_FILE_PATH = "../../../AES.shared/mixColumn/mix-column-constant.txt";
         public static string INVERSE_MIX_COLUMN_FILE_PATH = "../../../AES.shared/mixColumn/inverse-mix-column-constant.txt";
         public static string KEY_CONSTANT_FILE_PATH = "../../../AES.shared/KeyExpand/key-constant.txt";
-        public static string INPUT_FILE_PATH = "../../../AES.shared/KeyExpand/Input3.txt";
-        public static string OUTPUT_FILE_PATH = "../../../AES.shared/KeyExpand/Input2.dat";
+        public static string INPUT_FILE_PATH = "../../../AES.shared/fileReader/input.txt";
+        public static string OUTPUT_FILE_PATH = "../../../AES.shared/fileReader/output.txt";
 
     }
 }

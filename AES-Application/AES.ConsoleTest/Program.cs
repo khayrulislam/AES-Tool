@@ -18,20 +18,17 @@ namespace AES.ConsoleTest
         public static void Main(string[] args)
         {
 
-            string inputText = "qwertyuiopasdfgh";
-            string key = "1122334455667788";
-
-
             Parameter par = new Parameter();
             par.Key = "Thats my Kung Fu";
             par.Text = "Two One Nine TwoTwo One Nine TwoTwo One Nine TwoTwo One Nine Two";
             par.InitialVector = "ABCDEFGHIPQRSTUV";
             par.Type = "e";
             par.Mode = "ecb";
-            par.InputFilePath = Constants.OUTPUT_FILE_PATH;
-            par.OutputFilePath = Constants.INPUT_FILE_PATH;
+            par.InputFilePath = Constants.INPUT_FILE_PATH;
+            par.OutputFilePath = Constants.OUTPUT_FILE_PATH;
 
             var enc = new Encrypt(par);
+            enc.Execute();
             Console.Read();
 
 

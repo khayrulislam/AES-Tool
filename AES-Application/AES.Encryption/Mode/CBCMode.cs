@@ -39,9 +39,6 @@ namespace AES.Encryption.Mode
         }
 
 
-
-
-
         public void ExecuteTextOperation()
         {
             // initial vector convert to 2d array from 1d array

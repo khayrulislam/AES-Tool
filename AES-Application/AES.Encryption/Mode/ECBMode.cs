@@ -18,7 +18,6 @@ namespace AES.Encryption.Mode
         private Parameter parameter;
         public ECBMode(): base()
         {
-                
         }
 
         private byte[][] EncryptionRoundIteration(byte[][] currentStage)
@@ -49,12 +48,13 @@ namespace AES.Encryption.Mode
                 byte[] buffer = new byte[bufferSize];
                 fileStram.Seek(0, SeekOrigin.Begin);
                 int bytesRead = fileStram.Read(buffer, 0, bufferSize);
+
                 while (bytesRead > 0)
                 {
                     byte[] cypher = EncryptBlock(buffer);
                     Array.Clear(buffer,0,16);
                     FileWrite(cypher);
-                    
+                    Util.Print1DHex(cypher);
                     bytesRead = fileStram.Read(buffer, 0, bufferSize);
                 }
             }
