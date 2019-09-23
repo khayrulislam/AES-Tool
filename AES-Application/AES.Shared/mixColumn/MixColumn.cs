@@ -89,7 +89,7 @@ namespace AES.Shared.mixColumn
                         tempResult ^= iterativeValue;
                     }
                     num /= 2;
-                    Multiply2(iterativeValue);
+                    iterativeValue = Multiply2(iterativeValue);
                 }
                 result ^= tempResult;
             }

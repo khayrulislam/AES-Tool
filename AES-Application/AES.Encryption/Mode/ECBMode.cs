@@ -23,14 +23,12 @@ namespace AES.Encryption.Mode
         private byte[][] EncryptionRoundIteration(byte[][] currentStage)
         {
             currentStage = AddRoundKey(currentStage, keyInstance.GetRoundKey(0));
-            //Util.Print2DHex(keyInstance.GetRoundKey(0));
             for (int i = 1; i <= 10; i++)
             {
                 currentStage = SubstituteByte(currentStage);
                 currentStage = ShiftRow(currentStage);
                 if (i != 10) currentStage = MixColumnOperation(currentStage);
                 currentStage = AddRoundKey(currentStage, keyInstance.GetRoundKey(i));
-                Util.Print2DHex(keyInstance.GetRoundKey(i));
             }
             return Util.MatrixTranspose(currentStage);
         }
@@ -95,7 +93,6 @@ namespace AES.Encryption.Mode
                 }
                 // encrypted cypher text byte
                 blockCypher = EncryptBlock(blockCypher);
-                //Util.Print1DHex(blockCypher);
             }
         }
 
