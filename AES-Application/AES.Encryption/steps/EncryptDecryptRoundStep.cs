@@ -4,6 +4,7 @@ using AES.Shared.utility;
 using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,6 +81,20 @@ namespace AES.Encryption.steps
             paddingResult[15] = (byte)(16 - length);
 
             return paddingResult;
+        }
+
+        public void FileWrite(byte[] output,string filePath)
+        {
+            FileStream fs;
+            if (File.Exists(@filePath))
+            {
+                File.Delete(@filePath);
+            }
+            fs = File.Create(@filePath);
+            fs.Close();
+            fs = new FileStream(@filePath, FileMode.Append);
+            fs.Write(output, 0, output.Length);
+            fs.Close();
         }
 
     }

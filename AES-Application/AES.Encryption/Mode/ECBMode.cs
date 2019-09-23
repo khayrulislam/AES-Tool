@@ -53,14 +53,14 @@ namespace AES.Encryption.Mode
                 {
                     byte[] cypher = EncryptBlock(buffer);
                     Array.Clear(buffer,0,16);
-                    FileWrite(cypher);
+                    FileWrite(cypher,parameter.OutputFilePath);
                     Util.Print1DHex(cypher);
                     bytesRead = fileStram.Read(buffer, 0, bufferSize);
                 }
             }
         }
 
-        private void FileWrite(byte[] output)
+        /*private void FileWrite(byte[] output)
         {
             FileStream fs;
             if (File.Exists(@parameter.OutputFilePath))
@@ -72,7 +72,7 @@ namespace AES.Encryption.Mode
             fs = new FileStream(parameter.OutputFilePath, FileMode.Append);
             fs.Write(output, 0, output.Length);
             fs.Close();
-        }
+        }*/
 
         public void ExecuteTextOperation()
         {
