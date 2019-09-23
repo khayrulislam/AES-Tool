@@ -22,7 +22,7 @@ namespace AES.Shared.mixColumn
         private void InitializeMixColumnMatrix()
         {
             DataReader dReader = new DataReader();
-            List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.MIX_COLUMN_MATRIX_FILE_PATH);
+            List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.MIX_COLUMN_FILE_PATH);
 
             matrix = new int[4][];
 
