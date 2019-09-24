@@ -1,5 +1,5 @@
 ﻿using AES.Shared.utility;
-using AES.Encryption.Mode;
+using AES.EncryptOrDecrypt.Mode;
 using AES.Shared.FileReader;
 using AES.Shared.KeyExpand;
 using System;
@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AES.Encryption.encrypt;
+using AES.EncryptOrDecrypt.encrypt_decrypt;
 
 namespace AES.ConsoleTest
 {
@@ -25,7 +25,7 @@ namespace AES.ConsoleTest
             par.Mode = "ecb";
             par.InputFilePath = Constants.OUTPUT_FILE_PATH;
             par.OutputFilePath = Constants.OUTPUT_FILE_PATH2;
-            var enc = new Encrypt(par);
+            var enc = new EncryptDecryptOperation(par);
             enc.Execute();
 
             //

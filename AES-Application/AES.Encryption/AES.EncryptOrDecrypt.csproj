@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="encrypt\Encrypt.cs" />
+    <Compile Include="encrypt_decrypt\EncryptDecryptOperation.cs" />
     <Compile Include="mode\CBCMode.cs" />
     <Compile Include="mode\CBCModeDecrypt.cs" />
     <Compile Include="mode\ECBMode.cs" />

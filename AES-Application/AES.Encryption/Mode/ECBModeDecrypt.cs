@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AES.Encryption.mode
+namespace AES.EncryptOrDecrypt.mode
 {
     public class ECBModeDecrypt: EncryptDecryptRoundStep,IEncryptDecryptMode
     {

@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace AES.Encryption.Mode
+namespace AES.EncryptOrDecrypt.Mode
 {
     public class CBCMode : EncryptDecryptRoundStep, IEncryptDecryptMode
     {

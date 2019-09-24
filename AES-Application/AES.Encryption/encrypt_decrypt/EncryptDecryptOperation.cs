@@ -1,20 +1,18 @@
-﻿using AES.Encryption.mode;
-using AES.Encryption.Mode;
+﻿using AES.EncryptOrDecrypt.mode;
+using AES.EncryptOrDecrypt.Mode;
 using AES.Shared.Interface;
 using AES.Shared.utility;
 using System.Collections.Generic;
 
-namespace AES.Encryption.encrypt
+namespace AES.EncryptOrDecrypt.encrypt_decrypt
 {
-    public class Encrypt
+    public class EncryptDecryptOperation
     {
-
-
         private Parameter param;
 
         Dictionary<string, IEncryptDecryptMode> modeMap = new Dictionary<string, IEncryptDecryptMode>();
 
-        public Encrypt(Parameter parameter)
+        public EncryptDecryptOperation(Parameter parameter)
         {
             this.param = parameter;
         }
