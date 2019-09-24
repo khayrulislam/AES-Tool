@@ -6,7 +6,7 @@
         public static int BLOCK_COLUMN_SIZE = 4;
         public static int BOX_SIZE = 16;
         public static int MIX_COLUMN_CONSTANT = 27;
-        public static int INPUT_BUFFER_SIZE = 16;
+        public static int INPUT_BLOCK_SIZE = 16;
 
 
         public static string S_BOX_FILE_PATH = "../../../AES.shared/s-Box/s-box.txt";

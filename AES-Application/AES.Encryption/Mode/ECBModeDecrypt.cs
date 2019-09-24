@@ -21,9 +21,9 @@ namespace AES.EncryptOrDecrypt.mode
         {
             using (FileStream fileStram = new FileStream(@parameter.InputFilePath, FileMode.Open, FileAccess.Read))
             {
-                byte[] inputBufferByte = new byte[Constants.INPUT_BUFFER_SIZE];
+                byte[] inputBufferByte = new byte[Constants.INPUT_BLOCK_SIZE];
                 fileStram.Seek(0, SeekOrigin.Begin);
-                int bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
+                int bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BLOCK_SIZE);
                 byte[][] iv = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector)));
                 this.fileCreate = true;
 
@@ -33,7 +33,7 @@ namespace AES.EncryptOrDecrypt.mode
                     Array.Clear(inputBufferByte, 0, 16);
                     FileWrite(cypher, parameter.OutputFilePath);
                     Util.Print1DHex(cypher);
-                    bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
+                    bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BLOCK_SIZE);
                 }
             }
         }

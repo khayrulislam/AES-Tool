@@ -99,7 +99,6 @@ namespace AES.Shared.steps
             }
             
         }
-
         private void CreateFile(string filePath)
         {
             FileStream fs;
@@ -109,6 +108,34 @@ namespace AES.Shared.steps
             }
             fs = File.Create(@filePath);
             fs.Close();
+        }
+
+        public byte[] FileRead(string filePath, int startPosition)
+        {
+            byte[] byteArray = new byte[Constants.INPUT_BLOCK_SIZE];
+
+            using (FileStream fileStram = new FileStream(@filePath, FileMode.Open, FileAccess.Read))
+            {
+                fileStram.Seek(startPosition, SeekOrigin.Begin);
+                int bytesRead = fileStram.Read(byteArray, 0, Constants.INPUT_BLOCK_SIZE);
+                if (bytesRead < 16)
+                {
+                    int nullByte = 0;
+                    foreach (byte singleByte in byteArray)
+                    {
+                        if (singleByte == 0x00) nullByte++;
+                    }
+                    byteArray[byteArray.Length - 1] = Convert.ToByte(nullByte - 1);
+                }
+            }
+            return byteArray;
+        }
+
+        public long GetFileBlockSize(string @filePath)
+        {
+            FileInfo info = new FileInfo(filePath);
+            if (info.Length % Constants.INPUT_BLOCK_SIZE != 0) return 1 + info.Length / Constants.INPUT_BLOCK_SIZE;
+            return info.Length % Constants.INPUT_BLOCK_SIZE;
         }
     }
 }
