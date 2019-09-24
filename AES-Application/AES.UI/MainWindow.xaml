@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AES.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="AES Desktop Application" Height="600" Width="800">
     <Grid>
-        
+        <ComboBox HorizontalAlignment="Left" Margin="92,38,0,0" VerticalAlignment="Top" Width="652" Height="30" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem Content="File"
+                      IsSelected="True" />
+            <ComboBoxItem Content="Text" />
+
+        </ComboBox>
+        <TextBox x:Name="filePathTextBox" HorizontalAlignment="Left" Height="30" Margin="92,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="563" TextChanged="TextBox_TextChanged"/>
+        <Button Content="Select File" HorizontalAlignment="Left" Margin="669,86,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="30"/>
+        <ComboBox HorizontalAlignment="Left" Margin="92,196,0,0" VerticalAlignment="Top" Width="652" Height="30">
+            <ComboBoxItem Content="ECB (electronic codebook)"
+                      IsSelected="True" />
+            <ComboBoxItem Content="CBC (cipher block chaining)"/>
+        </ComboBox>
+        <TextBox x:Name="keyTextBox" HorizontalAlignment="Left" Height="30" Margin="92,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="652" TextChanged="keyTextBox_TextChanged"/>
+        <TextBox x:Name="InitialVectorTextBox" HorizontalAlignment="Left" Height="30" Margin="92,303,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="652" TextChanged="TextBox_TextChanged_1"/>
+        <Button Content="Encript" HorizontalAlignment="Left" Margin="92,357,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_1"/>
+        <Button Content="Decript" HorizontalAlignment="Left" Margin="195,357,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_2"/>
+        <Button Content="Select Folder" HorizontalAlignment="Left" Margin="669,140,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_3"/>
+        <TextBox x:Name="outputFolderPathTextbox" HorizontalAlignment="Left" Height="30" Margin="92,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="563"/>
+        <!--// -->
     </Grid>
 </Window>
