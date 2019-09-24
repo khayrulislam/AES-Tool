@@ -22,7 +22,7 @@ namespace AES.EncryptOrDecrypt.mode
 
             long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
             byte[] inputBlock, cypher;
-            this.fileCreate = true;
+            this.isNotOutputFileExist = true;
 
             for (int i = 0; i < fileBlock; i++)
             {

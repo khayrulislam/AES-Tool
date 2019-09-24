@@ -1,4 +1,5 @@
-﻿using AES.Shared.mixColumn;
+﻿using AES.Shared.FileReader;
+using AES.Shared.mixColumn;
 using AES.Shared.s_Box;
 using AES.Shared.utility;
 using AES.Shared.Utility;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AES.Shared.steps
 {
-    public class EncryptDecryptRoundStep
+    public class EncryptDecryptRoundStep : File_Reader
     {
         private SBox sBoxInstance;
 
@@ -19,7 +20,6 @@ namespace AES.Shared.steps
 
         public bool isInverse;
 
-        public bool fileCreate;
 
         // create sbox and mixcolumn instance for next use
         public EncryptDecryptRoundStep()
@@ -85,57 +85,6 @@ namespace AES.Shared.steps
             return paddingResult;
         }
 
-        public void FileWrite(byte[] output,string filePath)
-        {
-            if (fileCreate)
-            {
-                CreateFile(filePath);
-                fileCreate = false;
-            }
-            using (FileStream fs = new FileStream(@filePath, FileMode.Append))
-            {
-                fs.Write(output, 0, output.Length);
-                fs.Close();
-            }
-            
-        }
-        private void CreateFile(string filePath)
-        {
-            FileStream fs;
-            if (File.Exists(@filePath))
-            {
-                File.Delete(@filePath);
-            }
-            fs = File.Create(@filePath);
-            fs.Close();
-        }
 
-        public byte[] FileRead(string filePath, int startPosition)
-        {
-            byte[] byteArray = new byte[Constants.INPUT_BLOCK_SIZE];
-
-            using (FileStream fileStram = new FileStream(@filePath, FileMode.Open, FileAccess.Read))
-            {
-                fileStram.Seek(startPosition, SeekOrigin.Begin);
-                int bytesRead = fileStram.Read(byteArray, 0, Constants.INPUT_BLOCK_SIZE);
-                if (bytesRead < 16)
-                {
-                    int nullByte = 0;
-                    foreach (byte singleByte in byteArray)
-                    {
-                        if (singleByte == 0x00) nullByte++;
-                    }
-                    //byteArray[byteArray.Length - 1] = Convert.ToByte(nullByte - 1);
-                }
-            }
-            return byteArray;
-        }
-
-        public long GetFileBlockSize(string @filePath)
-        {
-            FileInfo info = new FileInfo(filePath);
-            if (info.Length % Constants.INPUT_BLOCK_SIZE != 0) return 1 + info.Length / Constants.INPUT_BLOCK_SIZE;
-            return info.Length / Constants.INPUT_BLOCK_SIZE;
-        }
     }
 }

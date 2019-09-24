@@ -54,7 +54,7 @@ namespace AES.Shared.s_Box
         {
             InitializeArray();
 
-            DataReader dReader = new DataReader();
+            File_Reader dReader = new File_Reader();
             List<string[]> sBoxlines = dReader.GetLinesOfWordsFromFile(Constants.S_BOX_FILE_PATH);
             List<string[]> inverseSBoxlines = dReader.GetLinesOfWordsFromFile(Constants.INVERSE_S_BOX_FILE_PATH);
 

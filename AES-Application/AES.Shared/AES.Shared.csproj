@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fileReader\DataReader.cs" />
+    <Compile Include="fileReader\File_Reader.cs" />
     <Compile Include="interface\IEncryptDecryptMode.cs" />
     <Compile Include="keyExpand\Key.cs" />
     <Compile Include="mixColumn\MixColumn.cs" />

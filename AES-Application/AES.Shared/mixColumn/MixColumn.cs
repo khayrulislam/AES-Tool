@@ -13,8 +13,7 @@ namespace AES.Shared.mixColumn
     {
         public static MixColumn mixColumnInstance = null;
 
-        private int[][] matrix;
-        private int[][] inverseMatrix;
+        private byte[][] matrix, inverseMatrix;
         private MixColumn()
         {
             InitializeMixColumnMatrix();
@@ -22,21 +21,21 @@ namespace AES.Shared.mixColumn
 
         private void InitializeMixColumnMatrix()
         {
-            DataReader dReader = new DataReader();
+            File_Reader dReader = new File_Reader();
             List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.MIX_COLUMN_FILE_PATH);
             List<string[]> inverseLines = dReader.GetLinesOfWordsFromFile(Constants.INVERSE_MIX_COLUMN_FILE_PATH);
 
-            matrix = new int[Constants.BLOCK_ROW_SIZE][];
-            inverseMatrix = new int[Constants.BLOCK_ROW_SIZE][];
+            matrix = new byte[Constants.BLOCK_ROW_SIZE][];
+            inverseMatrix = new byte[Constants.BLOCK_ROW_SIZE][];
 
             for (int i = 0; i < lines.Count; i++)
             {
-                matrix[i] = new int[lines[i].Length];
-                inverseMatrix[i] = new int[inverseLines[i].Length];
+                matrix[i] = new byte[lines[i].Length];
+                inverseMatrix[i] = new byte[inverseLines[i].Length];
                 for (int j = 0; j < lines[i].Length; j++)
                 {
-                    matrix[i][j] = Convert.ToInt32(lines[i][j]);
-                    inverseMatrix[i][j] = Convert.ToInt32(inverseLines[i][j]);
+                    matrix[i][j] = Util.GetByte(lines[i][j]);
+                    inverseMatrix[i][j] = Util.GetByte(inverseLines[i][j]);
                 }
             }
         }
@@ -73,13 +72,13 @@ namespace AES.Shared.mixColumn
             return result;
         }
 
-        private byte MatixMultiplication                                                                                                                                (int[] matrixRow, byte[] col)
+        private byte MatixMultiplication(byte[] matrixRow, byte[] col)
         {
             int result = 0;
-            int iterativeValue,initialValue;
+            int iterativeValue;
             for(int i = 0; i < Constants.BLOCK_COLUMN_SIZE; i++)
             {
-                initialValue = iterativeValue = col[i];
+                iterativeValue = col[i];
                 int tempResult = 0;
                 int num = matrixRow[i];
                 while (num!=0) 

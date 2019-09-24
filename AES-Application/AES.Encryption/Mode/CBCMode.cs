@@ -38,7 +38,7 @@ namespace AES.EncryptOrDecrypt.Mode
             long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
             byte[][] initialVector = Util.Transform1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector));
             byte[] inputBlock;
-            this.fileCreate = true;
+            this.isNotOutputFileExist = true;
 
             for (int i = 0; i < fileBlock; i++)
             {

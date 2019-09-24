@@ -28,7 +28,7 @@ namespace AES.Shared.KeyExpand
 
         private void InitializeKeyConstant()
         {
-            DataReader dReader = new DataReader();
+            File_Reader dReader = new File_Reader();
             List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.KEY_CONSTANT_FILE_PATH);
 
             this.KeyConstant = new byte[lines.Count][];
