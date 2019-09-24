@@ -65,6 +65,7 @@ namespace AES.Encryption.Mode
         public void ExecuteTextOperation()
         {
             byte[] textByteArray= Encoding.ASCII.GetBytes(parameter.Text);
+            //byte[] textByteArray= new byte[] { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff };
             byte[] blockCypher = new byte[16];
             int length = textByteArray.Length;
 
@@ -82,6 +83,7 @@ namespace AES.Encryption.Mode
                 }
                 // encrypted cypher text byte
                 blockCypher = EncryptBlock(blockCypher);
+                Util.Print1DHex(blockCypher);
             }
         }
 

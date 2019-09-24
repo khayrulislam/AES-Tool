@@ -20,7 +20,8 @@ namespace AES.Shared.Utility
 
             for (int i = 0; i < row.Length; i++)
             {
-                rowShiftResult[i] = row[ isRightShift ? (i + shiftCount) % row.Length : ( row.Length + i + shiftCount) % row.Length];
+                int pos = isRightShift ? ( ( (shiftCount*2 )% row.Length + i + shiftCount) % row.Length ): ((i + shiftCount) % row.Length) ; 
+                rowShiftResult[i] = row[pos];
             }
             return rowShiftResult;
         }

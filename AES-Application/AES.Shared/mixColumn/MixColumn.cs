@@ -67,13 +67,13 @@ namespace AES.Shared.mixColumn
                     {
                         col[k] = input[k][j];
                     }
-                    result[i][j] = isInverse? Multiplication(inverseMatrix[i], col) : Multiplication(matrix[i], col);
+                    result[i][j] = isInverse? MatixMultiplication(inverseMatrix[i], col) : MatixMultiplication(matrix[i], col);
                 }
             }
             return result;
         }
 
-        private byte Multiplication(int[] matrixRow, byte[] col)
+        private byte MatixMultiplication                                                                                                                                (int[] matrixRow, byte[] col)
         {
             int result = 0;
             int iterativeValue,initialValue;
@@ -82,11 +82,11 @@ namespace AES.Shared.mixColumn
                 initialValue = iterativeValue = col[i];
                 int tempResult = 0;
                 int num = matrixRow[i];
-                while (num!=0)
+                while (num!=0) 
                 {
                     if (num % 2 != 0)
                     {
-                        tempResult ^= iterativeValue;
+                        tempResult = tempResult ^ iterativeValue ;
                     }
                     num /= 2;
                     iterativeValue = Multiply2(iterativeValue);
@@ -94,6 +94,18 @@ namespace AES.Shared.mixColumn
                 result ^= tempResult;
             }
             return Convert.ToByte(result); 
+        }
+
+        private int Recursion(int iteration, int value)
+        {
+            if (iteration == 1) return value;
+            if (iteration == 2) return Multiply2(value);
+            if (iteration % 2 != 0) return Recursion(iteration - 1, value) ^ value;
+            else
+            {
+                int temp = Recursion(iteration / 2, value);
+                return Multiply2(temp);
+            }
         }
 
         private int Multiply2(int value)
@@ -109,7 +121,7 @@ namespace AES.Shared.mixColumn
             {
                 value ^= 1 << 7; 
             }
-            return value << 1 ^ constant;
+            return (value << 1 ^ constant);
         }
 
     }
