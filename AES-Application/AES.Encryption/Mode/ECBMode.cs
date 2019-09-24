@@ -52,53 +52,6 @@ namespace AES.EncryptOrDecrypt.Mode
                 FileWrite(cypher, @parameter.OutputFilePath);
                 Util.Print1DHex(cypher);
             }
-
-
-
-
-
-
-
-
-
-           /* using (FileStream fileStram = new FileStream(@parameter.InputFilePath, FileMode.Open, FileAccess.Read))
-            {
-                *//*                byte[] inputBufferByte = new byte[Constants.INPUT_BUFFER_SIZE];
-                                fileStram.Seek(0, SeekOrigin.Begin);
-                                int bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
-                                this.fileCreate = true;
-
-                                while (bytesRead > 0)
-                                {
-                                    byte[] cypher = EncryptBlock(inputBufferByte);
-                                    Array.Clear(inputBufferByte, 0, 16);
-                                    FileWrite(cypher, parameter.OutputFilePath);
-                                    Util.Print1DHex(cypher);
-                                    bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
-                                }*//*
-                byte[] inputBufferByte = new byte[Constants.INPUT_BLOCK_SIZE];
-                fileStram.Seek(0, SeekOrigin.Begin);
-                int bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BLOCK_SIZE);
-                this.fileCreate = true;
-
-                while (true)
-                {
-                    bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BLOCK_SIZE);
-                    if (bytesRead < 16)
-                    {
-                        int nullByte = 0;
-                        foreach(byte singleByte in inputBufferByte)
-                        {
-                            if (singleByte == 0x00) nullByte++;
-                        }
-                        inputBufferByte[inputBufferByte.Length-1] = Convert.ToByte(nullByte - 1);
-                    }
-                    byte[] cypher = EncryptBlock(inputBufferByte);
-                    Array.Clear(inputBufferByte, 0, 16);
-                    FileWrite(cypher, @parameter.OutputFilePath);
-                    Util.Print1DHex(cypher);
-                }
-            }*/
         }
 
         public void ExecuteTextOperation()

@@ -35,27 +35,20 @@ namespace AES.EncryptOrDecrypt.Mode
 
         public void ExecuteFileOperation()
         {
-            using (FileStream fileStram = new FileStream(@parameter.InputFilePath, FileMode.Open, FileAccess.Read))
-            {
-                byte[] inputBufferByte = new byte[Constants.INPUT_BLOCK_SIZE];
-                fileStram.Seek(0, SeekOrigin.Begin);
-                int bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BLOCK_SIZE);
-                byte[][] iv = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector)));
-                this.fileCreate = true;
+            long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
+            byte[][] initialVector = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector)));
+            byte[] inputBlock;
+            this.fileCreate = true;
 
-                while (bytesRead > 0)
-                {
-                    // encrypted cypher byte array in 2d foramte;
-                    iv = EncryptBlock(inputBufferByte,iv);
-                    Array.Clear(inputBufferByte, 0, 16);
-                    FileWrite(Util.Convert2dTo1DArray(iv), parameter.OutputFilePath);
-                    Util.Print2DHex(iv);
-                    bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BLOCK_SIZE);
-                    iv = Util.MatrixTranspose(iv);
-                }
+            for (int i = 0; i < fileBlock; i++)
+            {
+                inputBlock = FileRead(parameter.InputFilePath, i * Constants.INPUT_BLOCK_SIZE);
+                initialVector = EncryptBlock(inputBlock, initialVector);
+                FileWrite(Util.Convert2dTo1DArray(initialVector), parameter.OutputFilePath);
+                Util.Print2DHex(initialVector);
+                initialVector = Util.MatrixTranspose(initialVector);
             }
         }
-
 
         public void ExecuteTextOperation()
         {

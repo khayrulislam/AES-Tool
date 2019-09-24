@@ -125,7 +125,7 @@ namespace AES.Shared.steps
                     {
                         if (singleByte == 0x00) nullByte++;
                     }
-                    byteArray[byteArray.Length - 1] = Convert.ToByte(nullByte - 1);
+                    //byteArray[byteArray.Length - 1] = Convert.ToByte(nullByte - 1);
                 }
             }
             return byteArray;
