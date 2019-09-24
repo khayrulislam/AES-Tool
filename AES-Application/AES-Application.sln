@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AES.Shared", "AES.Shared\AE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AES.ConsoleTest", "AES.ConsoleTest\AES.ConsoleTest.csproj", "{1AD50109-F69E-4512-BE39-04C72CDB335E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AES.UI", "AES.UI\AES.UI.csproj", "{298F213E-5128-4BF2-9C4A-E476D1C2C7D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1AD50109-F69E-4512-BE39-04C72CDB335E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AD50109-F69E-4512-BE39-04C72CDB335E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AD50109-F69E-4512-BE39-04C72CDB335E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{298F213E-5128-4BF2-9C4A-E476D1C2C7D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{298F213E-5128-4BF2-9C4A-E476D1C2C7D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{298F213E-5128-4BF2-9C4A-E476D1C2C7D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{298F213E-5128-4BF2-9C4A-E476D1C2C7D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
