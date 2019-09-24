@@ -22,7 +22,7 @@ namespace AES.ConsoleTest
             par.Text = "Two One Nine TwoTwo One Nine TwoTwo One Nine Two";
             par.InitialVector = "ABCDEFGHIPQRSTUV";
             par.Type = "d";
-            par.Mode = "ecb";
+            par.Mode = "cbc";
             par.InputFilePath = Constants.OUTPUT_FILE_PATH;
             par.OutputFilePath = Constants.OUTPUT_FILE_PATH2;
             var enc = new EncryptDecryptOperation(par);

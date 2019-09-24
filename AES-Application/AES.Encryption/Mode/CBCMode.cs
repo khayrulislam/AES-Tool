@@ -12,11 +12,11 @@ using System.IO;
 
 namespace AES.EncryptOrDecrypt.Mode
 {
-    public class CBCMode : EncryptDecryptRoundStep, IEncryptDecryptMode
+    public class CBCModeEecrypt : EncryptDecryptRoundStep, IEncryptDecryptMode
     {
         private Key keyInstance;
         private Parameter parameter;
-        public CBCMode() : base()
+        public CBCModeEecrypt() : base()
         {
         }
 
@@ -49,7 +49,7 @@ namespace AES.EncryptOrDecrypt.Mode
                     iv = EncryptBlock(inputBufferByte,iv);
                     Array.Clear(inputBufferByte, 0, 16);
                     FileWrite(Util.Convert2dTo1DArray(iv), parameter.OutputFilePath);
-                    //Util.Print2DHex(iv);
+                    Util.Print2DHex(iv);
                     bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
                     iv = Util.MatrixTranspose(iv);
                 }

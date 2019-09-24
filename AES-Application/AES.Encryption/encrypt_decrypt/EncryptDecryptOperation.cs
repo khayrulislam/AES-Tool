@@ -28,9 +28,10 @@ namespace AES.EncryptOrDecrypt.encrypt_decrypt
 
         private void ModeInitialization()
         {
-            modeMap["eecb"] = new ECBMode(); 
-            modeMap["ecbc"] = new CBCMode();
+            modeMap["eecb"] = new ECBModeEncrypt(); 
+            modeMap["ecbc"] = new CBCModeEecrypt();
             modeMap["decb"] = new ECBModeDecrypt();
+            modeMap["dcbc"] = new CBCModeDecrypt();
         }
     }
 }

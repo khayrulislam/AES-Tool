@@ -18,42 +18,37 @@ namespace AES.EncryptOrDecrypt.mode
         private Key keyInstance;
         public void ExecuteFileOperation()
         {
-            int bufferSize = 16;
-            FileStream fileStram = new FileStream(parameter.InputFilePath, FileMode.Open, FileAccess.Read);
-            using (fileStram)
+            using (FileStream fileStram = new FileStream(@parameter.InputFilePath, FileMode.Open, FileAccess.Read))
             {
-                byte[] buffer = new byte[bufferSize];
+                byte[] inputBufferByte = new byte[Constants.INPUT_BUFFER_SIZE];
                 fileStram.Seek(0, SeekOrigin.Begin);
-                int bytesRead = fileStram.Read(buffer, 0, bufferSize);
+                int bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
+                byte[][] iv = Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(@parameter.InitialVector));
+                this.fileCreate = true;
+                byte[][] decypher,ans;
+
                 while (bytesRead > 0)
                 {
-                    byte[] cypher = DecryptBlock(buffer);
-                    Array.Clear(buffer, 0, 16);
-                    FileWrite(cypher);
+                    // encrypted cypher byte array in 2d foramte;
+                    decypher = DecryptBlock(inputBufferByte);
+                    
+                    ans = AddRoundKey(decypher, iv);
+                    iv = Util.Convert1Dto2DArray(inputBufferByte); ;
+                    Array.Clear(inputBufferByte, 0, 16);
 
-                    bytesRead = fileStram.Read(buffer, 0, bufferSize);
+                    FileWrite(Util.Convert2dTo1DArray(ans), @parameter.OutputFilePath);
+                    Util.Print2DHex(ans);
+                    bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BUFFER_SIZE);
                 }
             }
         }
 
-        private void FileWrite(byte[] output)
-        {
-            FileStream fs;
-            if (!File.Exists(@parameter.OutputFilePath))
-            {
-                fs = File.Create(@parameter.OutputFilePath);
-                fs.Close();
-            }
-            fs = new FileStream(parameter.OutputFilePath, FileMode.Append);
-            fs.Write(output, 0, output.Length);
-            fs.Close();
-        }
-
-        private byte[] DecryptBlock(byte[] block)
+        private byte[][] DecryptBlock(byte[] block)
         {
             byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(block));
-            byte[][] result = DecryptRoundIteration(input);
-            return Util.Convert2dTo1DArray(result);
+            //byte[][] currentStage = AddRoundKey(input, iv);
+            return DecryptRoundIteration(input);
+
         }
 
         private byte[][] DecryptRoundIteration(byte[][] currentStage)
@@ -76,6 +71,7 @@ namespace AES.EncryptOrDecrypt.mode
         public void InitializeMode(Parameter param)
         {
             this.parameter = param;
+            this.isInverse = true;
             ExpandDecryptKey(Encoding.ASCII.GetBytes(parameter.Key));
         }
         private void ExpandDecryptKey(byte[] key)
