@@ -35,9 +35,9 @@ namespace AES.EncryptOrDecrypt.mode
 
         private byte[] DecryptBlock(byte[] block)
         {
-            byte[][] input = Util.Convert1Dto2DArrayColumnWise(block);
+            byte[][] input = Util.Transform1Dto2DArray(block);
             byte[][] result = DecryptionRoundIteration(input);
-            return Util.Convert2dTo1DArrayColumnWise(result);
+            return Util.Transform2dTo1DArray(result);
         }
 
         private byte[][] DecryptionRoundIteration(byte[][] currentStage)

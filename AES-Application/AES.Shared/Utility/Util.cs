@@ -49,18 +49,7 @@ namespace AES.Shared.Utility
             return array2d;
         } 
 
-        public static byte[][] Convert1Dto2DArrayRowWise(byte[] array)
-        {
-            byte[][] array2d = Initialize2DArray();
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                array2d[i / Constants.BLOCK_ROW_SIZE][i % Constants.BLOCK_COLUMN_SIZE] = array[i];
-            }
-            return array2d;
-        }
-
-        public static byte[][] Convert1Dto2DArrayColumnWise(byte[] array)
+        public static byte[][] Transform1Dto2DArray(byte[] array)
         {
             byte[][] array2d = Initialize2DArray();
 
@@ -114,22 +103,8 @@ namespace AES.Shared.Utility
             return result;
         }
 
-
-        public static byte[] Convert2dTo1DArrayRowWise(byte[][] input)
-        {
-            byte[] result = new byte[Constants.BLOCK_ROW_SIZE * Constants.BLOCK_COLUMN_SIZE];
-
-            for(int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
-            {
-                for(int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
-                {
-                    result[Constants.BLOCK_ROW_SIZE * i + j] = input[i][j];
-                }
-            }
-            return result;
-        }
-
-        public static byte[] Convert2dTo1DArrayColumnWise(byte[][] input)
+        // create 2d array column wise
+        public static byte[] Transform2dTo1DArray(byte[][] input)
         {
             byte[] result = new byte[Constants.BLOCK_ROW_SIZE * Constants.BLOCK_COLUMN_SIZE];
 

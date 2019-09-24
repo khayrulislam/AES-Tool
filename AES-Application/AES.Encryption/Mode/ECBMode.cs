@@ -81,9 +81,9 @@ namespace AES.EncryptOrDecrypt.Mode
 
         private byte[] EncryptBlock(byte[] block)
         {
-            byte[][] input = Util.Convert1Dto2DArrayColumnWise(block);
+            byte[][] input = Util.Transform1Dto2DArray(block);
             byte[][] result = EncryptionRoundIteration(input);
-            return Util.Convert2dTo1DArrayColumnWise(result);
+            return Util.Transform2dTo1DArray(result);
         }
 
         public void InitializeMode(Parameter param)

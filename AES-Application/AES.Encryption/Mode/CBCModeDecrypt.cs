@@ -19,7 +19,7 @@ namespace AES.EncryptOrDecrypt.mode
         public void ExecuteFileOperation()
         {
             long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
-            byte[][] initialVector = Util.Convert1Dto2DArrayColumnWise(Encoding.ASCII.GetBytes(parameter.InitialVector));
+            byte[][] initialVector = Util.Transform1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector));
             byte[] inputBlock;
             this.fileCreate = true;
             byte[][] decypher,plainText;
@@ -29,15 +29,15 @@ namespace AES.EncryptOrDecrypt.mode
                 inputBlock = FileRead(@parameter.InputFilePath, i * Constants.INPUT_BLOCK_SIZE);
                 decypher = DecryptBlock(inputBlock);
                 plainText = AddRoundKey(decypher, initialVector);
-                FileWrite(Util.Convert2dTo1DArrayColumnWise(plainText), @parameter.OutputFilePath);
+                FileWrite(Util.Transform2dTo1DArray(plainText), @parameter.OutputFilePath);
                 Util.Print2DHex(initialVector);
-                initialVector = Util.Convert1Dto2DArrayColumnWise(inputBlock);
+                initialVector = Util.Transform1Dto2DArray(inputBlock);
             }
         }
 
         private byte[][] DecryptBlock(byte[] block)
         {
-            byte[][] input = Util.Convert1Dto2DArrayColumnWise(block);
+            byte[][] input = Util.Transform1Dto2DArray(block);
             return DecryptRoundIteration(input);
         }
 

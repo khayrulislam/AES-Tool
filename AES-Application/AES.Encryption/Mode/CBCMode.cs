@@ -36,7 +36,7 @@ namespace AES.EncryptOrDecrypt.Mode
         public void ExecuteFileOperation()
         {
             long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
-            byte[][] initialVector = Util.Convert1Dto2DArrayColumnWise(Encoding.ASCII.GetBytes(parameter.InitialVector));
+            byte[][] initialVector = Util.Transform1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector));
             byte[] inputBlock;
             this.fileCreate = true;
 
@@ -44,8 +44,8 @@ namespace AES.EncryptOrDecrypt.Mode
             {
                 inputBlock = FileRead(@parameter.InputFilePath, i * Constants.INPUT_BLOCK_SIZE);
                 initialVector = EncryptBlock(inputBlock, initialVector);
-                FileWrite(Util.Convert2dTo1DArrayColumnWise(initialVector), @parameter.OutputFilePath);
-                Util.Print1DHex(Util.Convert2dTo1DArrayColumnWise(initialVector));
+                FileWrite(Util.Transform2dTo1DArray(initialVector), @parameter.OutputFilePath);
+                Util.Print1DHex(Util.Transform2dTo1DArray(initialVector));
                 //initialVector = Util.MatrixTranspose(initialVector);
             }
         }
@@ -53,7 +53,7 @@ namespace AES.EncryptOrDecrypt.Mode
         public void ExecuteTextOperation()
         {
             // initial vector convert to 2d array from 1d array
-            byte[][] iv = Util.Convert1Dto2DArrayColumnWise(Encoding.ASCII.GetBytes(parameter.InitialVector));
+            byte[][] iv = Util.Transform1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector));
 
             byte[] textByteArray = Encoding.ASCII.GetBytes(parameter.Text);
             byte[] textBlock = new byte[16];
@@ -74,13 +74,13 @@ namespace AES.EncryptOrDecrypt.Mode
                 }
                 // encrypted cypher 2d byte
                 iv = EncryptBlock(textBlock,iv);
-                Util.Print1DHex(Util.Convert2dTo1DArrayColumnWise(iv));
+                Util.Print1DHex(Util.Transform2dTo1DArray(iv));
             }
         }
 
         private byte[][] EncryptBlock(byte[] textBlock, byte[][] iv)
         {
-            byte[][] input = Util.Convert1Dto2DArrayColumnWise(textBlock);
+            byte[][] input = Util.Transform1Dto2DArray(textBlock);
             byte[][] currentStage = AddRoundKey(input, iv);
             return EncryptionRoundIteration(currentStage);
         }

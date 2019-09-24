@@ -60,7 +60,7 @@ namespace AES.Shared.KeyExpand
         // input key in one dimension array
         public void InitializeKey(byte []initialKey)
         {
-            byte [][] initialKeyWords = Util.Convert1Dto2DArrayRowWise(initialKey);
+            byte [][] initialKeyWords = Util.MatrixTranspose(Util.Transform1Dto2DArray(initialKey)) ;
             for (int i = 0; i < initialKeyWords.Length; i++)
             {
                 KeyWords[i] = initialKeyWords[i];
