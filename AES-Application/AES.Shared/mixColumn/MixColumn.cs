@@ -96,17 +96,6 @@ namespace AES.Shared.mixColumn
             return Convert.ToByte(result); 
         }
 
-        private int Recursion(int iteration, int value)
-        {
-            if (iteration == 1) return value;
-            if (iteration == 2) return Multiply2(value);
-            if (iteration % 2 != 0) return Recursion(iteration - 1, value) ^ value;
-            else
-            {
-                int temp = Recursion(iteration / 2, value);
-                return Multiply2(temp);
-            }
-        }
 
         private int Multiply2(int value)
         {

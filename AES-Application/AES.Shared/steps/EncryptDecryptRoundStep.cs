@@ -135,7 +135,7 @@ namespace AES.Shared.steps
         {
             FileInfo info = new FileInfo(filePath);
             if (info.Length % Constants.INPUT_BLOCK_SIZE != 0) return 1 + info.Length / Constants.INPUT_BLOCK_SIZE;
-            return info.Length % Constants.INPUT_BLOCK_SIZE;
+            return info.Length / Constants.INPUT_BLOCK_SIZE;
         }
     }
 }

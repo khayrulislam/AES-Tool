@@ -30,7 +30,7 @@ namespace AES.EncryptOrDecrypt.Mode
                 if (i != 10) currentStage = MixColumnOperation(currentStage);
                 currentStage = AddRoundKey(currentStage, keyInstance.GetRoundKey(i));
             }
-            return Util.MatrixTranspose(currentStage);
+            return currentStage;
         }
 
         public void ExpandKey(byte[] key)
@@ -47,7 +47,7 @@ namespace AES.EncryptOrDecrypt.Mode
 
             for (int i = 0; i < fileBlock; i++)
             {
-                inputBlock = FileRead(parameter.InputFilePath,i * Constants.INPUT_BLOCK_SIZE);
+                inputBlock = FileRead(@parameter.InputFilePath,i * Constants.INPUT_BLOCK_SIZE);
                 cypher = EncryptBlock(inputBlock);
                 FileWrite(cypher, @parameter.OutputFilePath);
                 Util.Print1DHex(cypher);
@@ -81,9 +81,9 @@ namespace AES.EncryptOrDecrypt.Mode
 
         private byte[] EncryptBlock(byte[] block)
         {
-            byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(block));
+            byte[][] input = Util.Convert1Dto2DArrayColumnWise(block);
             byte[][] result = EncryptionRoundIteration(input);
-            return Util.Convert2dTo1DArray(result);
+            return Util.Convert2dTo1DArrayColumnWise(result);
         }
 
         public void InitializeMode(Parameter param)

@@ -16,7 +16,7 @@
         public static string KEY_CONSTANT_FILE_PATH = "../../../AES.shared/KeyExpand/key-constant.txt";
         public static string INPUT_FILE_PATH = "../../../AES.shared/fileReader/input.txt";
         public static string OUTPUT_FILE_PATH = "../../../AES.shared/fileReader/output.txt";
-        public static string OUTPUT_FILE_PATH2 = "../../../AES.shared/fileReader/output2.txt";
+        public static string OUTPUT_FILE_PATH2 = "../../../AES.shared/fileReader/output3.txt";
 
     }
 }

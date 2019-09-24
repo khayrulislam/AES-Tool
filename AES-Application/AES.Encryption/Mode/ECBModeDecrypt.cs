@@ -19,30 +19,25 @@ namespace AES.EncryptOrDecrypt.mode
 
         public void ExecuteFileOperation()
         {
-            using (FileStream fileStram = new FileStream(@parameter.InputFilePath, FileMode.Open, FileAccess.Read))
-            {
-                byte[] inputBufferByte = new byte[Constants.INPUT_BLOCK_SIZE];
-                fileStram.Seek(0, SeekOrigin.Begin);
-                int bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BLOCK_SIZE);
-                byte[][] iv = Util.MatrixTranspose(Util.Convert1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector)));
-                this.fileCreate = true;
 
-                while (bytesRead > 0)
-                {
-                    byte[] cypher = DecryptBlock(inputBufferByte);
-                    Array.Clear(inputBufferByte, 0, 16);
-                    FileWrite(cypher, parameter.OutputFilePath);
-                    Util.Print1DHex(cypher);
-                    bytesRead = fileStram.Read(inputBufferByte, 0, Constants.INPUT_BLOCK_SIZE);
-                }
+            long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
+            byte[] inputBlock, cypher;
+            this.fileCreate = true;
+
+            for (int i = 0; i < fileBlock; i++)
+            {
+                inputBlock = FileRead(@parameter.InputFilePath, i * Constants.INPUT_BLOCK_SIZE);
+                cypher = DecryptBlock(inputBlock);
+                FileWrite(cypher, @parameter.OutputFilePath);
+                Util.Print1DHex(cypher);
             }
         }
 
         private byte[] DecryptBlock(byte[] block)
         {
-            byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(block));
+            byte[][] input = Util.Convert1Dto2DArrayColumnWise(block);
             byte[][] result = DecryptionRoundIteration(input);
-            return Util.Convert2dTo1DArray(result);
+            return Util.Convert2dTo1DArrayColumnWise(result);
         }
 
         private byte[][] DecryptionRoundIteration(byte[][] currentStage)
@@ -55,7 +50,7 @@ namespace AES.EncryptOrDecrypt.mode
                 currentStage = AddRoundKey(currentStage, keyInstance.GetRoundKey(i));
                 if (i != 0) currentStage = MixColumnOperation(currentStage);
             }
-            return Util.MatrixTranspose(currentStage);
+            return currentStage;
         }
 
         public void ExecuteTextOperation()
