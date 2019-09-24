@@ -46,9 +46,7 @@ namespace AES.EncryptOrDecrypt.mode
         private byte[][] DecryptBlock(byte[] block)
         {
             byte[][] input = Util.MatrixTranspose(Util.Convert1Dto2DArray(block));
-            //byte[][] currentStage = AddRoundKey(input, iv);
             return DecryptRoundIteration(input);
-
         }
 
         private byte[][] DecryptRoundIteration(byte[][] currentStage)
