@@ -1,4 +1,4 @@
-﻿namespace AES.Shared.utility
+﻿namespace AES.EncryptDecrypt.utility
 {
     public class Parameter
     {

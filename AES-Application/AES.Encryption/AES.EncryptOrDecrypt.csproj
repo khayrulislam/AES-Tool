@@ -49,9 +49,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AES.Shared\AES.Shared.csproj">
+    <ProjectReference Include="..\AES.EncryptDecrypt\AES.EncryptDecrypt.csproj">
       <Project>{9103FB3E-39C3-4907-B1F3-86CDDE0F1F79}</Project>
-      <Name>AES.Shared</Name>
+      <Name>AES.EncryptDecrypt</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

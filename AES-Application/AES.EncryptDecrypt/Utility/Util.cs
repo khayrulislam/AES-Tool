@@ -1,11 +1,11 @@
-﻿using AES.Shared.utility;
+﻿using AES.EncryptDecrypt.utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AES.Shared.utility
+namespace AES.EncryptDecrypt.utility
 {
     public static class Util
     {

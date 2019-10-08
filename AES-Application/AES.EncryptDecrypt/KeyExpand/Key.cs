@@ -1,13 +1,13 @@
-﻿using AES.Shared.FileReader;
-using AES.Shared.s_Box;
-using AES.Shared.utility;
+﻿using AES.EncryptDecrypt.FileReader;
+using AES.EncryptDecrypt.s_Box;
+using AES.EncryptDecrypt.utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AES.Shared.KeyExpand
+namespace AES.EncryptDecrypt.KeyExpand
 {
     
     public sealed class Key

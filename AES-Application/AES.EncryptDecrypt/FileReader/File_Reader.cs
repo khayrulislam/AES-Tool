@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AES.Shared.mixColumn;
-using AES.Shared.s_Box;
-using AES.Shared.utility;
+using AES.EncryptDecrypt.mixColumn;
+using AES.EncryptDecrypt.s_Box;
+using AES.EncryptDecrypt.utility;
 
-namespace AES.Shared.FileReader
+namespace AES.EncryptDecrypt.FileReader
 {
     public class File_Reader
     {

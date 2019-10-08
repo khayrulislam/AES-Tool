@@ -1,12 +1,12 @@
-﻿using AES.Shared.FileReader;
-using AES.Shared.utility;
+﻿using AES.EncryptDecrypt.FileReader;
+using AES.EncryptDecrypt.utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AES.Shared.mixColumn
+namespace AES.EncryptDecrypt.mixColumn
 {
     public sealed class MixColumn
     {
