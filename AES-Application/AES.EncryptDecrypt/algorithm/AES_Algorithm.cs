@@ -4,15 +4,15 @@ using AES.EncryptDecrypt.utility;
 using System.Collections.Generic;
 using System.IO;
 
-namespace AES.EncryptDecrypt.operation
+namespace AES.EncryptDecrypt.algorithm
 {
-    public class EncryptionDecryptionOperation
+    public class AESAlgorithm
     {
         private Parameter param;
 
         Dictionary<string, IEncryptDecryptMode> modeMap = new Dictionary<string, IEncryptDecryptMode>();
 
-        public EncryptionDecryptionOperation(Parameter parameter)
+        public AESAlgorithm(Parameter parameter)
         {
             this.param = parameter;
         }
