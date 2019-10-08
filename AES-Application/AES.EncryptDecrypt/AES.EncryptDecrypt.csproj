@@ -51,7 +51,18 @@
     <Compile Include="mode\ECB_Encryption.cs" />
     <Compile Include="mode\ECB_Decryption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="s-Box\SBox.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="steps\EncryptDecryptRoundStep.cs" />
     <Compile Include="utility\Constants.cs" />
     <Compile Include="utility\Parameter.cs" />
@@ -62,8 +73,22 @@
     <Content Include="keyExpand\key-constant.txt" />
     <Content Include="mixColumn\inverse-mix-column-constant.txt" />
     <Content Include="mixColumn\mix-column-constant.txt" />
+    <None Include="Resources\TextFile1.txt" />
     <Content Include="s-Box\inverse-s-box.txt" />
     <Content Include="s-Box\s-box.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

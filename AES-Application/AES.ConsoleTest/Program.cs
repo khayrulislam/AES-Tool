@@ -1,14 +1,6 @@
-﻿using AES.EncryptDecrypt.utility;
-using AES.EncryptDecrypt.mode;
-using AES.EncryptDecrypt.FileReader;
-using AES.EncryptDecrypt.KeyExpand;
+﻿using AES.EncryptDecrypt.algorithm;
+using AES.EncryptDecrypt.utility;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AES.EncryptDecrypt.algorithm;
 
 namespace AES.ConsoleTest
 {
