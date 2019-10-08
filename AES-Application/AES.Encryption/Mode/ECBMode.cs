@@ -2,7 +2,6 @@
 using AES.Shared.KeyExpand;
 using AES.Shared.Interface;
 using AES.Shared.utility;
-using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,7 +48,7 @@ namespace AES.EncryptOrDecrypt.Mode
             {
                 inputBlock = FileRead(@parameter.InputFilePath,i * Constants.INPUT_BLOCK_SIZE);
                 cypher = EncryptBlock(inputBlock);
-                FileWrite(cypher, @parameter.OutputFilePath);
+                FileWrite(cypher, @parameter.OutputFolderPath);
                 Util.Print1DHex(cypher);
             }
         }

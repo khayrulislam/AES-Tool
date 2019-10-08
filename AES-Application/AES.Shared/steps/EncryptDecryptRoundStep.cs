@@ -2,7 +2,6 @@
 using AES.Shared.mixColumn;
 using AES.Shared.s_Box;
 using AES.Shared.utility;
-using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;

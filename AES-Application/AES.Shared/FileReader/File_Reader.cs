@@ -68,17 +68,22 @@ namespace AES.Shared.FileReader
             {
                 fileStram.Seek(startPosition, SeekOrigin.Begin);
                 int bytesRead = fileStram.Read(byteArray, 0, Constants.INPUT_BLOCK_SIZE);
-                if (bytesRead < 16)
+                if (bytesRead < Constants.INPUT_BLOCK_SIZE)
                 {
-                    int nullByte = 0;
-                    foreach (byte singleByte in byteArray)
-                    {
-                        if (singleByte == 0x00) nullByte++;
-                    }
-                    //byteArray[byteArray.Length - 1] = Convert.ToByte(nullByte - 1);
+                    int nullByteCount = Constants.INPUT_BLOCK_SIZE - bytesRead;
+                    byteArray[byteArray.Length - 1] = Convert.ToByte(nullByteCount);
                 }
             }
             return byteArray;
+        }
+
+        public byte[] RemovePadding(byte[] plainText)
+        {
+            int paddingLength = plainText[Constants.INPUT_BLOCK_SIZE - 1];
+            if (paddingLength > 15) paddingLength = 0;
+            byte[] output = new byte[Constants.INPUT_BLOCK_SIZE - paddingLength ];
+            for (int i = 0; i < output.Length; i++) output[i] = plainText[i];
+            return output;
         }
 
         public long GetFileBlockSize(string @filePath)

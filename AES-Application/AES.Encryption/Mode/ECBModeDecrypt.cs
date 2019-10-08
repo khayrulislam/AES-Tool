@@ -2,7 +2,6 @@
 using AES.Shared.steps;
 using AES.Shared.KeyExpand;
 using AES.Shared.utility;
-using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,17 +18,17 @@ namespace AES.EncryptOrDecrypt.mode
 
         public void ExecuteFileOperation()
         {
-
             long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
-            byte[] inputBlock, cypher;
+            byte[] inputBlock, plainText;
             this.isNotOutputFileExist = true;
 
             for (int i = 0; i < fileBlock; i++)
             {
                 inputBlock = FileRead(@parameter.InputFilePath, i * Constants.INPUT_BLOCK_SIZE);
-                cypher = DecryptBlock(inputBlock);
-                FileWrite(cypher, @parameter.OutputFilePath);
-                Util.Print1DHex(cypher);
+                plainText = DecryptBlock(inputBlock);
+                if (i + 1 == fileBlock) plainText = RemovePadding(plainText);
+                FileWrite(plainText, @parameter.OutputFolderPath);
+                Util.Print1DHex(plainText);
             }
         }
 

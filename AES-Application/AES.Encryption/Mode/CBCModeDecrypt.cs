@@ -2,7 +2,6 @@
 using AES.Shared.steps;
 using AES.Shared.KeyExpand;
 using AES.Shared.utility;
-using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,7 +19,7 @@ namespace AES.EncryptOrDecrypt.mode
         {
             long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
             byte[][] initialVector = Util.Transform1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector));
-            byte[] inputBlock;
+            byte[] inputBlock, plainTextArray;
             this.isNotOutputFileExist = true;
             byte[][] decypher,plainText;
 
@@ -29,9 +28,11 @@ namespace AES.EncryptOrDecrypt.mode
                 inputBlock = FileRead(@parameter.InputFilePath, i * Constants.INPUT_BLOCK_SIZE);
                 decypher = DecryptBlock(inputBlock);
                 plainText = AddRoundKey(decypher, initialVector);
-                FileWrite(Util.Transform2dTo1DArray(plainText), @parameter.OutputFilePath);
-                Util.Print2DHex(initialVector);
                 initialVector = Util.Transform1Dto2DArray(inputBlock);
+                plainTextArray = Util.Transform2dTo1DArray(plainText);
+                if (i + 1 == fileBlock) plainTextArray = RemovePadding( plainTextArray );
+                FileWrite(plainTextArray, @parameter.OutputFolderPath);
+                Util.Print2DHex(initialVector);
             }
         }
 

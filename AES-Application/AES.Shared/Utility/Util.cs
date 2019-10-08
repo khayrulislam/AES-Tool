@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AES.Shared.Utility
+namespace AES.Shared.utility
 {
     public static class Util
     {

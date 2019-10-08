@@ -2,7 +2,6 @@
 using AES.Shared.KeyExpand;
 using AES.Shared.Interface;
 using AES.Shared.utility;
-using AES.Shared.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +43,7 @@ namespace AES.EncryptOrDecrypt.Mode
             {
                 inputBlock = FileRead(@parameter.InputFilePath, i * Constants.INPUT_BLOCK_SIZE);
                 initialVector = EncryptBlock(inputBlock, initialVector);
-                FileWrite(Util.Transform2dTo1DArray(initialVector), @parameter.OutputFilePath);
+                FileWrite(Util.Transform2dTo1DArray(initialVector), @parameter.OutputFolderPath);
                 Util.Print1DHex(Util.Transform2dTo1DArray(initialVector));
                 //initialVector = Util.MatrixTranspose(initialVector);
             }
