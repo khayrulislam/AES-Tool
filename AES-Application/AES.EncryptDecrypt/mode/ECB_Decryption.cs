@@ -18,16 +18,16 @@ namespace AES.EncryptDecrypt.mode
 
         public void ExecuteFileOperation()
         {
-            long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
+            long fileBlock = GetFileBlockSize(parameter.InputFilePath);
             byte[] inputBlock, plainText;
             this.isNotOutputFileExist = true;
 
             for (int i = 0; i < fileBlock; i++)
             {
-                inputBlock = FileRead(@parameter.InputFilePath, i * Properties.Settings.Default.INPUT_BLOCK_SIZE);
+                inputBlock = FileRead(parameter.InputFilePath, i * Properties.Settings.Default.INPUT_BLOCK_SIZE);
                 plainText = DecryptBlock(inputBlock);
                 if (i + 1 == fileBlock) plainText = RemovePadding(plainText);
-                FileWrite(plainText, @parameter.OutputFolderPath);
+                FileWrite(plainText, parameter.OutputFolderPath);
                 Util.Print1DHex(plainText);
             }
         }

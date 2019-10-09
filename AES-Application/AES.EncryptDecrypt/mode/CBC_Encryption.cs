@@ -34,16 +34,16 @@ namespace AES.EncryptDecrypt.mode
 
         public void ExecuteFileOperation()
         {
-            long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
+            long fileBlock = GetFileBlockSize(parameter.InputFilePath);
             byte[][] initialVector = Util.Transform1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector));
             byte[] inputBlock;
             this.isNotOutputFileExist = true;
 
             for (int i = 0; i < fileBlock; i++)
             {
-                inputBlock = FileRead(@parameter.InputFilePath, i * Properties.Settings.Default.INPUT_BLOCK_SIZE);
+                inputBlock = FileRead(parameter.InputFilePath, i * Properties.Settings.Default.INPUT_BLOCK_SIZE);
                 initialVector = EncryptBlock(inputBlock, initialVector);
-                FileWrite(Util.Transform2dTo1DArray(initialVector), @parameter.OutputFolderPath);
+                FileWrite(Util.Transform2dTo1DArray(initialVector), parameter.OutputFolderPath);
                 Util.Print1DHex(Util.Transform2dTo1DArray(initialVector));
                 //initialVector = Util.MatrixTranspose(initialVector);
             }

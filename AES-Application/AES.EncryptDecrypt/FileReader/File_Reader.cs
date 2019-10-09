@@ -70,7 +70,7 @@ namespace AES.EncryptDecrypt.FileReader
             return output;
         }
 
-        public long GetFileBlockSize(string @filePath)
+        public long GetFileBlockSize(string filePath)
         {
             FileInfo info = new FileInfo(filePath);
             if (info.Length % Properties.Settings.Default.INPUT_BLOCK_SIZE != 0) return 1 + info.Length / Properties.Settings.Default.INPUT_BLOCK_SIZE;

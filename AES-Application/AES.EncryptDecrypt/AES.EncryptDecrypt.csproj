@@ -69,7 +69,7 @@
   <ItemGroup>
     <Content Include="fileReader\input.txt" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\sbox.txt" />

@@ -17,7 +17,7 @@ namespace AES.EncryptDecrypt.mode
         private Key keyInstance;
         public void ExecuteFileOperation()
         {
-            long fileBlock = GetFileBlockSize(@parameter.InputFilePath);
+            long fileBlock = GetFileBlockSize(parameter.InputFilePath);
             byte[][] initialVector = Util.Transform1Dto2DArray(Encoding.ASCII.GetBytes(parameter.InitialVector));
             byte[] inputBlock, plainTextArray;
             this.isNotOutputFileExist = true;
@@ -25,13 +25,13 @@ namespace AES.EncryptDecrypt.mode
 
             for (int i = 0; i < fileBlock; i++)
             {
-                inputBlock = FileRead(@parameter.InputFilePath, i * Properties.Settings.Default.INPUT_BLOCK_SIZE);
+                inputBlock = FileRead(parameter.InputFilePath, i * Properties.Settings.Default.INPUT_BLOCK_SIZE);
                 decypher = DecryptBlock(inputBlock);
                 plainText = AddRoundKey(decypher, initialVector);
                 initialVector = Util.Transform1Dto2DArray(inputBlock);
                 plainTextArray = Util.Transform2dTo1DArray(plainText);
                 if (i + 1 == fileBlock) plainTextArray = RemovePadding( plainTextArray );
-                FileWrite(plainTextArray, @parameter.OutputFolderPath);
+                FileWrite(plainTextArray, parameter.OutputFolderPath);
                 Util.Print2DHex(initialVector);
             }
         }
