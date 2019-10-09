@@ -118,10 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="input" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\FileReader\input.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="inverse_mix_column_constant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\mixcolumn\inverse-mix-column-constant.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="TextFile1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TextFile1.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="inverse_s_box" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\s-box\inverse-s-box.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="key_constant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\keyexpand\key-constant.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="mix_column_constant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\mixcolumn\mix-column-constant.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="s_box" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\s-box\s-box.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
