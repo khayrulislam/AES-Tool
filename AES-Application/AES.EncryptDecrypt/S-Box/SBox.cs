@@ -52,10 +52,10 @@ namespace AES.EncryptDecrypt.s_Box
         private void InitializeBox()
         {
             InitializeArray();
-
+            //Properties.Resources.
             File_Reader dReader = new File_Reader();
-            List<string[]> sBoxlines = dReader.GetLinesOfWordsFromFile(Constants.S_BOX_FILE_PATH);
-            List<string[]> inverseSBoxlines = dReader.GetLinesOfWordsFromFile(Constants.INVERSE_S_BOX_FILE_PATH);
+            List<string[]> sBoxlines = dReader.GetWordList(Properties.Resources.sbox);
+            List<string[]> inverseSBoxlines = dReader.GetWordList(Properties.Resources.inversesbox);
 
             for (int i = 0; i < sBoxlines.Count; i++)
             {

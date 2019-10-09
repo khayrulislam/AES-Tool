@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AES.EncryptDecrypt.mixColumn;
@@ -14,7 +15,7 @@ namespace AES.EncryptDecrypt.FileReader
     {
         public bool isNotOutputFileExist;
 
-        public List<string[]> GetLinesOfWordsFromFile(string filePath)
+/*        public List<string[]> GetLinesOfWordsFromFile(string filePath)
         {
             List<string[]> allLine = new List<string[]>();
 
@@ -33,8 +34,21 @@ namespace AES.EncryptDecrypt.FileReader
                 Console.WriteLine("File not found!!!!");
             }
             return allLine;
-        }
+        }*/
 
+
+
+        public List<string[]> GetWordList(string fileData)
+        {
+            List<string[]> allLine = new List<string[]>();
+            string[] lines = fileData.Replace("\r", "").Split('\n');
+            foreach (string line in lines)
+            {
+                string[] words = line.Split(',');
+                allLine.Add(words);
+            }
+            return allLine;
+        }
         public void FileWrite(byte[] output, string filePath)
         {
             if (isNotOutputFileExist)

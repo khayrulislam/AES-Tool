@@ -21,8 +21,8 @@ namespace AES.EncryptDecrypt.mixColumn
         private void InitializeMixColumnMatrix()
         {
             File_Reader dReader = new File_Reader();
-            List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.MIX_COLUMN_FILE_PATH);
-            List<string[]> inverseLines = dReader.GetLinesOfWordsFromFile(Constants.INVERSE_MIX_COLUMN_FILE_PATH);
+            List<string[]> lines = dReader.GetWordList(Properties.Resources.mixcolumn);
+            List<string[]> inverseLines = dReader.GetWordList(Properties.Resources.inversemixcolumn);
 
             matrix = new byte[Constants.BLOCK_ROW_SIZE][];
             inverseMatrix = new byte[Constants.BLOCK_ROW_SIZE][];

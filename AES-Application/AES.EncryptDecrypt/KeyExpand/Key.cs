@@ -28,7 +28,7 @@ namespace AES.EncryptDecrypt.KeyExpand
         private void InitializeKeyConstant()
         {
             File_Reader dReader = new File_Reader();
-            List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.KEY_CONSTANT_FILE_PATH);
+            List<string[]> lines = dReader.GetWordList(Properties.Resources.key);
 
             this.KeyConstant = new byte[lines.Count][];
 

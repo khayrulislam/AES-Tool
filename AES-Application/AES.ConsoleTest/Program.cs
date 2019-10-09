@@ -14,8 +14,8 @@ namespace AES.ConsoleTest
             par.Text = "Two One Nine TwoTwo One Nine TwoTwo One Nine Two";
             par.InitialVector = "ABCDEFGHIPQRSTUV";
             par.Type = "e";
-            par.Mode = "cbc";
-            par.InputFilePath = Constants.INPUT_FILE_PATH2;
+            par.Mode = "ecb";
+            par.InputFilePath = Constants.INPUT_FILE_PATH;
             par.OutputFolderPath = Constants.OUTPUT_FILE_PATH;
             var enc = new AESAlgorithm(par);
             enc.Execute();
