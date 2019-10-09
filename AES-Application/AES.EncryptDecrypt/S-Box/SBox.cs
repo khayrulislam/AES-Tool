@@ -69,12 +69,12 @@ namespace AES.EncryptDecrypt.s_Box
 
         private void InitializeArray()
         {
-            sBox = new byte[Constants.BOX_SIZE][];
-            inverseSBox = new byte[Constants.BOX_SIZE][];
-            for (int i = 0; i < Constants.BOX_SIZE; i++)
+            sBox = new byte[Properties.Settings.Default.BOX_SIZE][];
+            inverseSBox = new byte[Properties.Settings.Default.BOX_SIZE][];
+            for (int i = 0; i < Properties.Settings.Default.BOX_SIZE; i++)
             {
-                sBox[i] = new byte[Constants.BOX_SIZE];
-                inverseSBox[i] = new byte[Constants.BOX_SIZE];
+                sBox[i] = new byte[Properties.Settings.Default.BOX_SIZE];
+                inverseSBox[i] = new byte[Properties.Settings.Default.BOX_SIZE];
             }
         }
     }

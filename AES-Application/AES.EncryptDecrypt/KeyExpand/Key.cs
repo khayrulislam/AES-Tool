@@ -14,13 +14,12 @@ namespace AES.EncryptDecrypt.KeyExpand
     {
         private byte[][] KeyWords;
 
-        private int NumberOfKeyWords = 44;
         private byte[][] KeyConstant;
         private static Key KeyInstance = null;
         private SBox sBoxInstance = null;
         private Key()
         {
-            KeyWords = new byte[NumberOfKeyWords][];
+            KeyWords = new byte[Properties.Settings.Default.NUMBER_OF_KEY_WORDS][];
             InitializeKeyConstant();
             sBoxInstance = SBox.GetSBoxInstance;
         }
@@ -70,16 +69,16 @@ namespace AES.EncryptDecrypt.KeyExpand
         public byte[][] GetRoundKey(int roundNumber)
         {
             byte[][] key = Util.Initialize2DArray();
-            for(int i = 0; i < Constants.BLOCK_COLUMN_SIZE; i++)
+            for(int i = 0; i < Properties.Settings.Default.BLOCK_COLUMN_SIZE; i++)
             {
-                key[i] = KeyWords[Constants.BLOCK_COLUMN_SIZE * roundNumber + i];
+                key[i] = KeyWords[Properties.Settings.Default.BLOCK_COLUMN_SIZE * roundNumber + i];
             }
             return Util.MatrixTranspose(key);
         }
 
         private void ExpandKey()
         {
-            for(int i = 4; i < NumberOfKeyWords; i++)
+            for(int i = 4; i < Properties.Settings.Default.NUMBER_OF_KEY_WORDS; i++)
             {
                 byte[] previousWord = new byte[4];
                 previousWord = KeyWords[i-1];

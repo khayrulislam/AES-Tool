@@ -41,7 +41,7 @@ namespace AES.EncryptDecrypt.mode
 
             for (int i = 0; i < fileBlock; i++)
             {
-                inputBlock = FileRead(@parameter.InputFilePath, i * Constants.INPUT_BLOCK_SIZE);
+                inputBlock = FileRead(@parameter.InputFilePath, i * Properties.Settings.Default.INPUT_BLOCK_SIZE);
                 initialVector = EncryptBlock(inputBlock, initialVector);
                 FileWrite(Util.Transform2dTo1DArray(initialVector), @parameter.OutputFolderPath);
                 Util.Print1DHex(Util.Transform2dTo1DArray(initialVector));

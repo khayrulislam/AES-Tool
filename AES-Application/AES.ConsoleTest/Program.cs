@@ -6,17 +6,23 @@ namespace AES.ConsoleTest
 {
     public class Program
     {
+
+
+        public static string INPUT_FILE_PATH = "../../../AES.EncryptDecrypt/fileReader/input.txt";
+        public static string INPUT_FILE_PATH2 = "../../../AES.EncryptDecrypt/fileReader/input.pdf";
+        public static string OUTPUT_FILE_PATH = "../../../AES.EncryptDecrypt/fileReader";
+        public static string OUTPUT_FILE_PATH2 = "../../../AES.EncryptDecrypt/fileReader";
+
         public static void Main(string[] args)
         {
 
             Parameter par = new Parameter();
             par.Key = "Thats my Kung Fu";
-            par.Text = "Two One Nine TwoTwo One Nine TwoTwo One Nine Two";
             par.InitialVector = "ABCDEFGHIPQRSTUV";
             par.Type = "e";
             par.Mode = "ecb";
-            par.InputFilePath = Constants.INPUT_FILE_PATH;
-            par.OutputFolderPath = Constants.OUTPUT_FILE_PATH;
+            par.InputFilePath = INPUT_FILE_PATH;
+            par.OutputFolderPath = OUTPUT_FILE_PATH;
             var enc = new AESAlgorithm(par);
             enc.Execute();
 

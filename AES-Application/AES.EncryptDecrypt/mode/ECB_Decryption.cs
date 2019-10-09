@@ -24,7 +24,7 @@ namespace AES.EncryptDecrypt.mode
 
             for (int i = 0; i < fileBlock; i++)
             {
-                inputBlock = FileRead(@parameter.InputFilePath, i * Constants.INPUT_BLOCK_SIZE);
+                inputBlock = FileRead(@parameter.InputFilePath, i * Properties.Settings.Default.INPUT_BLOCK_SIZE);
                 plainText = DecryptBlock(inputBlock);
                 if (i + 1 == fileBlock) plainText = RemovePadding(plainText);
                 FileWrite(plainText, @parameter.OutputFolderPath);
