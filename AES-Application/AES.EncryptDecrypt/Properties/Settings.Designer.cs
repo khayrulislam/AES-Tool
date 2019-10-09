@@ -67,32 +67,5 @@ namespace AES.EncryptDecrypt.Properties {
                 return ((int)(this["INPUT_BLOCK_SIZE"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("../../../AES.EncryptDecrypt/s-Box/s-box.txt")]
-        public string S_BOX_FILE_PATH {
-            get {
-                return ((string)(this["S_BOX_FILE_PATH"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("../../../AES.EncryptDecrypt/s-Box/inverse-s-box.txt")]
-        public string INVERSE_S_BOX_FILE_PATH {
-            get {
-                return ((string)(this["INVERSE_S_BOX_FILE_PATH"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("../../../AES.EncryptDecrypt/mixColumn/mix-column-constant.txt")]
-        public string MIX_COLUMN_FILE_PATH {
-            get {
-                return ((string)(this["MIX_COLUMN_FILE_PATH"]));
-            }
-        }
     }
 }
