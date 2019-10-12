@@ -1,4 +1,6 @@
-﻿using Microsoft.Win32;
+﻿using AES.EncryptDecrypt.algorithm;
+using AES.EncryptDecrypt.utility;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -42,13 +44,9 @@ namespace AES.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog openFileDialog1 = new Microsoft.Win32.OpenFileDialog();
-
-            if (openFileDialog1.ShowDialog() == true)
-            {
-                Console.WriteLine("hello");
-                filePathTextBox.Text = openFileDialog1.FileName;
-            }
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+                filePathTextBox.Text = openFileDialog.FileName;
         }
 
         private void keyTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -64,7 +62,16 @@ namespace AES.UI
         // encript button
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            string x = mode.SelectedIndex.ToString();
+            Parameter par = new Parameter();
+            par.Key = "Thats my Kung Fu";
+            par.InitialVector = "ABCDEFGHIPQRSTUV";
+            par.Type = "e";
+            par.Mode = "ecb";
+            par.InputFilePath = filePathTextBox.Text;
+            par.OutputFolderPath = outputFolderPathTextbox.Text;
+            var enc = new AESAlgorithm(par);
+            enc.Execute();
         }
 
         // decript button
@@ -78,13 +85,11 @@ namespace AES.UI
         // output folder path
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            FolderBrowserDialog folderDlg = new FolderBrowserDialog();
-            folderDlg.ShowNewFolderButton = true;
-            // Show the FolderBrowserDialog.  
-            folderDlg.ShowDialog();
-
-            Console.WriteLine(folderDlg.RootFolder);
-
+            using (var dialog = new FolderBrowserDialog())
+            {
+                DialogResult result = dialog.ShowDialog();
+                outputFolderPathTextbox.Text = dialog.SelectedPath;
+            }
         }
 
 

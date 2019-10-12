@@ -3,6 +3,7 @@ using AES.EncryptDecrypt.Interface;
 using AES.EncryptDecrypt.utility;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace AES.EncryptDecrypt.algorithm
 {

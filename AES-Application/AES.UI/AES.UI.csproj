@@ -95,5 +95,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AES.EncryptDecrypt\AES.EncryptDecrypt.csproj">
+      <Project>{9103fb3e-39c3-4907-b1f3-86cdde0f1f79}</Project>
+      <Name>AES.EncryptDecrypt</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

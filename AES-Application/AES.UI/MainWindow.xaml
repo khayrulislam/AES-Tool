@@ -6,26 +6,31 @@
         xmlns:local="clr-namespace:AES.UI"
         mc:Ignorable="d"
         Title="AES Desktop Application" Height="600" Width="800">
-    <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="92,38,0,0" VerticalAlignment="Top" Width="652" Height="30" SelectionChanged="ComboBox_SelectionChanged">
+    <Grid HorizontalAlignment="Left" Width="792" Height="569" VerticalAlignment="Top">
+        <ComboBox  HorizontalAlignment="Left" Margin="110,40,0,0" VerticalAlignment="Top" Width="595" Height="30" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem Content="File"
                       IsSelected="True" />
             <ComboBoxItem Content="Text" />
 
         </ComboBox>
-        <TextBox x:Name="filePathTextBox" HorizontalAlignment="Left" Height="30" Margin="92,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="563" TextChanged="TextBox_TextChanged"/>
-        <Button Content="Select File" HorizontalAlignment="Left" Margin="669,86,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="30"/>
-        <ComboBox HorizontalAlignment="Left" Margin="92,196,0,0" VerticalAlignment="Top" Width="652" Height="30">
-            <ComboBoxItem Content="ECB (electronic codebook)"
+        <TextBox  FontFamily="Verdana" FontSize="12" x:Name="filePathTextBox" HorizontalAlignment="Left" Height="30" Margin="110,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="505" TextChanged="TextBox_TextChanged"/>
+        <Button FontFamily="Verdana" FontSize="14" Content="Input File" HorizontalAlignment="Left" Margin="615,88,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click" Height="30"/>
+
+        <ComboBox VerticalContentAlignment="Center" Name="mode" HorizontalAlignment="Left" Margin="110,198,0,0"  VerticalAlignment="Top" Width="595" Height="30" FontFamily="Verdana" FontSize="14">
+            <ComboBoxItem Content="ECB" FontFamily="Verdana" FontSize="14"
                       IsSelected="True" />
-            <ComboBoxItem Content="CBC (cipher block chaining)"/>
+            <ComboBoxItem Content="CBC" FontFamily="Verdana" FontSize="14"/>
         </ComboBox>
-        <TextBox x:Name="keyTextBox" HorizontalAlignment="Left" Height="30" Margin="92,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="652" TextChanged="keyTextBox_TextChanged"/>
-        <TextBox x:Name="InitialVectorTextBox" HorizontalAlignment="Left" Height="30" Margin="92,303,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="652" TextChanged="TextBox_TextChanged_1"/>
-        <Button Content="Encript" HorizontalAlignment="Left" Margin="92,357,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_1"/>
-        <Button Content="Decript" HorizontalAlignment="Left" Margin="195,357,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_2"/>
-        <Button Content="Select Folder" HorizontalAlignment="Left" Margin="669,140,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_3"/>
-        <TextBox x:Name="outputFolderPathTextbox" HorizontalAlignment="Left" Height="30" Margin="92,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="563"/>
+
+
+        <TextBox FontFamily="Verdana" FontSize="12" TextAlignment="Center" x:Name="keyTextBox" HorizontalAlignment="Left" Height="30" Margin="110,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="595" TextChanged="keyTextBox_TextChanged"/>
+        <TextBox FontFamily="Verdana" FontSize="12" TextAlignment="Center" x:Name="InitialVectorTextBox" HorizontalAlignment="Left" Height="30" Margin="110,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="595" TextChanged="TextBox_TextChanged_1"/>
+        <Button FontFamily="Verdana" FontSize="14" Content="Encrypt" HorizontalAlignment="Left" Margin="525,397,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_1"/>
+        <Button FontFamily="Verdana" FontSize="14" Content="Decrypt" HorizontalAlignment="Left" Margin="628,397,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_2"/>
+        <Button FontFamily="Verdana" FontSize="14" Content="Output Folder" HorizontalAlignment="Left" Margin="600,142,0,0" VerticalAlignment="Top" Width="105" Height="30" Click="Button_Click_3"/>
+        <TextBox  FontFamily="Verdana" FontSize="12" x:Name="outputFolderPathTextbox" HorizontalAlignment="Left" Height="30" Margin="110,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="490"/>
+        <Label FontFamily="Verdana" FontSize="14" Content="Key" HorizontalAlignment="Left" Margin="111,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.345,0.423"/>
+        <Label FontFamily="Verdana" FontSize="14" Content="Initial Vector" HorizontalAlignment="Left" Margin="111,319,0,0" VerticalAlignment="Top"/>
         <!--// -->
     </Grid>
 </Window>
