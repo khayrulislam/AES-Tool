@@ -21,11 +21,11 @@ namespace AES.EncryptDecrypt.mixColumn
         private void InitializeMixColumnMatrix()
         {
             File_Reader dReader = new File_Reader();
-            List<string[]> lines = dReader.GetLinesOfWordsFromFile(Constants.MIX_COLUMN_FILE_PATH);
-            List<string[]> inverseLines = dReader.GetLinesOfWordsFromFile(Constants.INVERSE_MIX_COLUMN_FILE_PATH);
+            List<string[]> lines = dReader.GetWordList(Properties.Resources.mixcolumn);
+            List<string[]> inverseLines = dReader.GetWordList(Properties.Resources.inversemixcolumn);
 
-            matrix = new byte[Constants.BLOCK_ROW_SIZE][];
-            inverseMatrix = new byte[Constants.BLOCK_ROW_SIZE][];
+            matrix = new byte[Properties.Settings.Default.BLOCK_ROW_SIZE][];
+            inverseMatrix = new byte[Properties.Settings.Default.BLOCK_ROW_SIZE][];
 
             for (int i = 0; i < lines.Count; i++)
             {
@@ -56,12 +56,12 @@ namespace AES.EncryptDecrypt.mixColumn
         {
             byte[][] result = Util.Initialize2DArray();
             
-            for (int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            for (int i = 0; i < Properties.Settings.Default.BLOCK_ROW_SIZE; i++)
             {
-                for (int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
+                for (int j = 0; j < Properties.Settings.Default.BLOCK_COLUMN_SIZE; j++)
                 {
-                    byte[] col = new byte[Constants.BLOCK_COLUMN_SIZE];
-                    for (int k = 0; k < Constants.BLOCK_COLUMN_SIZE; k++)
+                    byte[] col = new byte[Properties.Settings.Default.BLOCK_COLUMN_SIZE];
+                    for (int k = 0; k < Properties.Settings.Default.BLOCK_COLUMN_SIZE; k++)
                     {
                         col[k] = input[k][j];
                     }
@@ -75,7 +75,7 @@ namespace AES.EncryptDecrypt.mixColumn
         {
             int result = 0;
             int iterativeValue;
-            for(int i = 0; i < Constants.BLOCK_COLUMN_SIZE; i++)
+            for(int i = 0; i < Properties.Settings.Default.BLOCK_COLUMN_SIZE; i++)
             {
                 iterativeValue = col[i];
                 int tempResult = 0;
@@ -97,7 +97,7 @@ namespace AES.EncryptDecrypt.mixColumn
 
         private int Multiply2(int value)
         {
-            int constant = Constants.MIX_COLUMN_CONSTANT;
+            int constant = Properties.Settings.Default.MIX_COLUMN_CONSTANT;
             // check 8th bit is 0 or not
             // if not multiply with two and xor with constant
             if (value >> 7 == 0)

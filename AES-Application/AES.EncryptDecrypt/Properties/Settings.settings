@@ -17,14 +17,8 @@
     <Setting Name="INPUT_BLOCK_SIZE" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">16</Value>
     </Setting>
-    <Setting Name="S_BOX_FILE_PATH" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">../../../AES.EncryptDecrypt/s-Box/s-box.txt</Value>
-    </Setting>
-    <Setting Name="INVERSE_S_BOX_FILE_PATH" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">../../../AES.EncryptDecrypt/s-Box/inverse-s-box.txt</Value>
-    </Setting>
-    <Setting Name="MIX_COLUMN_FILE_PATH" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">../../../AES.EncryptDecrypt/mixColumn/mix-column-constant.txt</Value>
+    <Setting Name="NUMBER_OF_KEY_WORDS" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">44</Value>
     </Setting>
   </Settings>
 </SettingsFile>

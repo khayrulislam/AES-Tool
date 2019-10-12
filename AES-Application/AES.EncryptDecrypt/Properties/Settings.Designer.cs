@@ -13,7 +13,7 @@ namespace AES.EncryptDecrypt.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.2.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
@@ -70,28 +70,10 @@ namespace AES.EncryptDecrypt.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("../../../AES.EncryptDecrypt/s-Box/s-box.txt")]
-        public string S_BOX_FILE_PATH {
+        [global::System.Configuration.DefaultSettingValueAttribute("44")]
+        public int NUMBER_OF_KEY_WORDS {
             get {
-                return ((string)(this["S_BOX_FILE_PATH"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("../../../AES.EncryptDecrypt/s-Box/inverse-s-box.txt")]
-        public string INVERSE_S_BOX_FILE_PATH {
-            get {
-                return ((string)(this["INVERSE_S_BOX_FILE_PATH"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("../../../AES.EncryptDecrypt/mixColumn/mix-column-constant.txt")]
-        public string MIX_COLUMN_FILE_PATH {
-            get {
-                return ((string)(this["MIX_COLUMN_FILE_PATH"]));
+                return ((int)(this["NUMBER_OF_KEY_WORDS"]));
             }
         }
     }

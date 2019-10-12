@@ -3,22 +3,14 @@ using AES.EncryptDecrypt.mixColumn;
 using AES.EncryptDecrypt.s_Box;
 using AES.EncryptDecrypt.utility;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AES.EncryptDecrypt.steps
 {
     public class EncryptDecryptRoundStep : File_Reader
     {
         private SBox sBoxInstance;
-
         private MixColumn mixColumnInstance;
-
         public bool isInverse;
-
 
         // create sbox and mixcolumn instance for next use
         public EncryptDecryptRoundStep()
@@ -30,9 +22,9 @@ namespace AES.EncryptDecrypt.steps
         // substitute byte using sbox
         public byte[][] SubstituteByte(byte[][] currentStage)
         {
-            for (int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            for (int i = 0; i < Properties.Settings.Default.BLOCK_ROW_SIZE; i++)
             {
-                for (int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
+                for (int j = 0; j < Properties.Settings.Default.BLOCK_COLUMN_SIZE; j++)
                 {
                     currentStage[i][j] = sBoxInstance.GetSubstituteByte(currentStage[i][j],isInverse);
                 }
@@ -43,7 +35,7 @@ namespace AES.EncryptDecrypt.steps
         // shift row circular base on the row number
         public byte[][] ShiftRow(byte[][] currentStage)
         {
-            for (int i = 1; i < Constants.BLOCK_ROW_SIZE; i++)
+            for (int i = 1; i < Properties.Settings.Default.BLOCK_ROW_SIZE; i++)
             {
                 currentStage[i] = Util.ShiftRow(currentStage[i], i, isInverse);
             }
@@ -59,10 +51,10 @@ namespace AES.EncryptDecrypt.steps
         // Add round key general xor operation on text byte and key
         public byte[][] AddRoundKey(byte[][] currentStage, byte[][] key)
         {
-            byte[][] result = new byte[Constants.BLOCK_ROW_SIZE][];
+            byte[][] result = new byte[Properties.Settings.Default.BLOCK_ROW_SIZE][];
 
             // bit wise xor operation with currentStage and key
-            for (int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            for (int i = 0; i < Properties.Settings.Default.BLOCK_ROW_SIZE; i++)
             {
                 result[i] = Util.WordXOR(currentStage[i], key[i]);
             }

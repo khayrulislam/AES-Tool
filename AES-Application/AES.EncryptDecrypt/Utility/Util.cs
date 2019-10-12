@@ -40,11 +40,11 @@ namespace AES.EncryptDecrypt.utility
 
         public static byte[][] Initialize2DArray()
         {
-            byte[][] array2d = new byte[Constants.BLOCK_ROW_SIZE][];
+            byte[][] array2d = new byte[Properties.Settings.Default.BLOCK_ROW_SIZE][];
 
-            for (int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            for (int i = 0; i < Properties.Settings.Default.BLOCK_ROW_SIZE; i++)
             {
-                array2d[i] = new byte[Constants.BLOCK_COLUMN_SIZE];
+                array2d[i] = new byte[Properties.Settings.Default.BLOCK_COLUMN_SIZE];
             }
             return array2d;
         } 
@@ -55,16 +55,16 @@ namespace AES.EncryptDecrypt.utility
 
             for (int i = 0; i < array.Length; i++)
             {
-                array2d[i % Constants.BLOCK_COLUMN_SIZE][i / Constants.BLOCK_ROW_SIZE] = array[i];
+                array2d[i % Properties.Settings.Default.BLOCK_COLUMN_SIZE][i / Properties.Settings.Default.BLOCK_ROW_SIZE] = array[i];
             }
             return array2d;
         }
 
         public static void Print2DHex(byte[][] result)
         {
-            for(int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            for(int i = 0; i < Properties.Settings.Default.BLOCK_ROW_SIZE; i++)
             {
-                for(int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
+                for(int j = 0; j < Properties.Settings.Default.BLOCK_COLUMN_SIZE; j++)
                 {
                     Console.Write("{0:X2} ", result[i][j]);
                 }
@@ -93,9 +93,9 @@ namespace AES.EncryptDecrypt.utility
         {
             byte[][] result = Initialize2DArray();
             
-            for(int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            for(int i = 0; i < Properties.Settings.Default.BLOCK_ROW_SIZE; i++)
             {
-                for(int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
+                for(int j = 0; j < Properties.Settings.Default.BLOCK_COLUMN_SIZE; j++)
                 {
                     result[i][j] = input[j][i];
                 }
@@ -106,13 +106,13 @@ namespace AES.EncryptDecrypt.utility
         // create 2d array column wise
         public static byte[] Transform2dTo1DArray(byte[][] input)
         {
-            byte[] result = new byte[Constants.BLOCK_ROW_SIZE * Constants.BLOCK_COLUMN_SIZE];
+            byte[] result = new byte[Properties.Settings.Default.BLOCK_ROW_SIZE * Properties.Settings.Default.BLOCK_COLUMN_SIZE];
 
-            for (int i = 0; i < Constants.BLOCK_ROW_SIZE; i++)
+            for (int i = 0; i < Properties.Settings.Default.BLOCK_ROW_SIZE; i++)
             {
-                for (int j = 0; j < Constants.BLOCK_COLUMN_SIZE; j++)
+                for (int j = 0; j < Properties.Settings.Default.BLOCK_COLUMN_SIZE; j++)
                 {
-                    result[Constants.BLOCK_ROW_SIZE * i + j] = input[j][i];
+                    result[Properties.Settings.Default.BLOCK_ROW_SIZE * i + j] = input[j][i];
                 }
             }
             return result;

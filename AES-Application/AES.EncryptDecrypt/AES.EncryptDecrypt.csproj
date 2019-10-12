@@ -62,27 +62,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="s-Box\SBox.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="steps\EncryptDecryptRoundStep.cs" />
-    <Compile Include="utility\Constants.cs" />
     <Compile Include="utility\Parameter.cs" />
     <Compile Include="utility\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fileReader\input.txt" />
-    <Content Include="keyExpand\key-constant.txt" />
-    <Content Include="mixColumn\inverse-mix-column-constant.txt" />
-    <Content Include="mixColumn\mix-column-constant.txt" />
-    <None Include="Resources\TextFile1.txt" />
-    <Content Include="s-Box\inverse-s-box.txt" />
-    <Content Include="s-Box\s-box.txt" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\sbox.txt" />
+    <None Include="Resources\inversesbox.txt" />
+    <None Include="Resources\mixcolumn.txt" />
+    <None Include="Resources\inversemixcolumn.txt" />
+    <None Include="Resources\key.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
