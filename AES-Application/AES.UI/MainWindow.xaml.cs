@@ -80,25 +80,29 @@ namespace AES.UI
         {
             string x = mode.SelectedIndex.ToString();
             Parameter par = new Parameter();
-            par.Key = "Thats my Kung Fu";
-            par.InitialVector = "ABCDEFGHIPQRSTUV";
-            par.Type = "e";
-            par.Mode = "ecb";
+            par.Key = keyTextBox.Text;
+            par.InitialVector = InitialVectorTextBox.Text;
+            par.Type =  "e";
+            par.Mode = mode.SelectedIndex==0 ? "ecb": "cbc";
             par.InputFilePath = filePathTextBox.Text;
             par.OutputFolderPath = outputFolderPathTextbox.Text;
             var enc = new AESAlgorithm(par);
-            enc.Execute();
-
-
-
-            
+            Task.Run(() => { enc.Execute(); });
 
         }
 
         // decript button
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            
+            Parameter par = new Parameter();
+            par.Key = keyTextBox.Text;
+            par.InitialVector = InitialVectorTextBox.Text;
+            par.Type = "d";
+            par.Mode = mode.SelectedIndex == 0 ? "ecb" : "cbc";
+            par.InputFilePath = filePathTextBox.Text;
+            par.OutputFolderPath = outputFolderPathTextbox.Text;
+            var enc = new AESAlgorithm(par);
+            Task.Run(()=> { enc.Execute(); });
         }
 
 

@@ -26,6 +26,9 @@ namespace AES.EncryptDecrypt.algorithm
             operationMode.InitializeMode(param);
             operationMode.ExecuteFileOperation();
             //mode.ExecuteTextOperation();
+            var str = param.Type == "e" ? "Encryption " : "Decryption ";
+            str += "complete !!!";
+            System.Windows.Forms.MessageBox.Show(str);
         }
 
         private void ChangeFileName()
