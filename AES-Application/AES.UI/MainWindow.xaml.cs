@@ -25,21 +25,37 @@ namespace AES.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        int init = 0;
         public MainWindow()
         {
             InitializeComponent();
             filePathTextBox.IsEnabled = false;
+            InitialVectorTextBox.IsEnabled = false;
+            outputFolderPathTextbox.IsEnabled = false;
+            keyTextBox.IsEnabled = true;
         }
 
         
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (mode.SelectedIndex == 1)
+            {
+                InitialVectorTextBox.IsEnabled = true;
+                init = 1;
+            }
 
+            if(init == 1)
+            {
+                if(mode.SelectedIndex == 0)
+                {
+                    InitialVectorTextBox.IsEnabled = false;
+                }
+            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            // Console.WriteLine(filePathTextBox.Text);
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -72,12 +88,17 @@ namespace AES.UI
             par.OutputFolderPath = outputFolderPathTextbox.Text;
             var enc = new AESAlgorithm(par);
             enc.Execute();
+
+
+
+            
+
         }
 
         // decript button
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
 
