@@ -67,12 +67,32 @@ namespace AES.UI
 
         private void keyTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (keyTextBox.Text.Length >= 16)
+            {
+                 encriptButton.IsEnabled = true;
+                 decriptButton.IsEnabled = true;
+            } 
+            
+            else
+            {
+                encriptButton.IsEnabled = false;
+                decriptButton.IsEnabled = false;
+            }
         }
 
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
+            if (InitialVectorTextBox.Text.Length >= 16)
+            {
+                encriptButton.IsEnabled = true;
+                decriptButton.IsEnabled = true;
+            }
 
+            else
+            {
+                encriptButton.IsEnabled = false;
+                decriptButton.IsEnabled = false;
+            }
         }
 
         // encript button
@@ -126,11 +146,7 @@ namespace AES.UI
                 decriptButton.IsEnabled = false;
             }
 
-            else
-            {
-                encriptButton.IsEnabled = true;
-                decriptButton.IsEnabled = true;
-            }
+
         }
 
         private void TextBox_LostFocus_IVTextbox(object sender, RoutedEventArgs e)
@@ -140,12 +156,6 @@ namespace AES.UI
                 System.Windows.Forms.MessageBox.Show("Initial Vector size should be at least 16 characters.");
                 encriptButton.IsEnabled = false;
                 decriptButton.IsEnabled = false;
-            }
-
-            else
-            {
-                encriptButton.IsEnabled = true;
-                decriptButton.IsEnabled = true;
             }
         }
 
