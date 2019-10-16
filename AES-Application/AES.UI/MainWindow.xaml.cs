@@ -113,7 +113,37 @@ namespace AES.UI
             }
         }
 
+        private void TextBox_LostFocus_keyTextbox(object sender, RoutedEventArgs e)
+        {
+            if(keyTextBox.Text.Length < 16)
+            {
+                System.Windows.Forms.MessageBox.Show("Key size should be at least 16 characters.");
+                encriptButton.IsEnabled = false;
+                decriptButton.IsEnabled = false;
+            }
 
+            else
+            {
+                encriptButton.IsEnabled = true;
+                decriptButton.IsEnabled = true;
+            }
+        }
+
+        private void TextBox_LostFocus_IVTextbox(object sender, RoutedEventArgs e)
+        {
+            if (InitialVectorTextBox.Text.Length < 16)
+            {
+                System.Windows.Forms.MessageBox.Show("Initial Vector size should be at least 16 characters.");
+                encriptButton.IsEnabled = false;
+                decriptButton.IsEnabled = false;
+            }
+
+            else
+            {
+                encriptButton.IsEnabled = true;
+                decriptButton.IsEnabled = true;
+            }
+        }
 
     }
 }

@@ -17,10 +17,10 @@
         </ComboBox>
 
 
-        <TextBox FontFamily="Verdana" FontSize="12" x:Name="keyTextBox" HorizontalAlignment="Left" Height="30" Margin="110,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="595" TextChanged="keyTextBox_TextChanged"/>
-        <TextBox FontFamily="Verdana" FontSize="12" x:Name="InitialVectorTextBox" HorizontalAlignment="Left" Height="30" Margin="110,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="595" TextChanged="TextBox_TextChanged_1"/>
-        <Button FontFamily="Verdana" FontSize="14" Content="Encrypt" HorizontalAlignment="Left" Margin="525,397,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_1"/>
-        <Button FontFamily="Verdana" FontSize="14" Content="Decrypt" HorizontalAlignment="Left" Margin="628,397,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_2"/>
+        <TextBox MaxLength="16" FontFamily="Verdana" FontSize="12" x:Name="keyTextBox" HorizontalAlignment="Left" Height="30" Margin="110,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="595" TextChanged="keyTextBox_TextChanged" LostFocus="TextBox_LostFocus_keyTextbox"/>
+        <TextBox MaxLength="16" FontFamily="Verdana" FontSize="12" x:Name="InitialVectorTextBox" HorizontalAlignment="Left" Height="30" Margin="110,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="595" TextChanged="TextBox_TextChanged_1" LostFocus="TextBox_LostFocus_IVTextbox"/>
+        <Button FontFamily="Verdana" FontSize="14" Content="Encrypt" x:Name="encriptButton" HorizontalAlignment="Left" Margin="525,397,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_1"/>
+        <Button FontFamily="Verdana" FontSize="14" Content="Decrypt" x:Name="decriptButton" HorizontalAlignment="Left" Margin="628,397,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="Button_Click_2"/>
         <Button FontFamily="Verdana" FontSize="14" Content="Output Folder" HorizontalAlignment="Left" Margin="600,142,0,0" VerticalAlignment="Top" Width="105" Height="30" Click="Button_Click_3"/>
         <TextBox  FontFamily="Verdana" FontSize="12" x:Name="outputFolderPathTextbox" HorizontalAlignment="Left" Height="30" Margin="110,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="490"/>
         <Label FontFamily="Verdana" FontSize="14" Content="Key" HorizontalAlignment="Left" Margin="111,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.345,0.423"/>
